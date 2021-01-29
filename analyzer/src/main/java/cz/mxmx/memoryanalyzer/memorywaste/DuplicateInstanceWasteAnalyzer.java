@@ -7,14 +7,9 @@ import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
 import cz.mxmx.memoryanalyzer.model.memorywaste.DuplicateInstanceWaste;
 import cz.mxmx.memoryanalyzer.model.memorywaste.Waste;
+import edu.tufts.eaftan.hprofparser.parser.datastructures.Value;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Analyzer to find duplicate instances of objects.
@@ -57,19 +52,62 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 	 * @param instance2 Instance 2
 	 * @return True if the instances are the same, otherwise false.
 	 */
-	private boolean instancesAreSame(InstanceDump instance, InstanceDump instance2) {
-		if(!this.instancesOfSameClass(instance, instance2)
-				|| instance.getInstanceFieldValues().size() != instance2.getInstanceFieldValues().size()) {
+	public boolean instancesAreSame(InstanceDump instance, InstanceDump instance2) {
+	    Map<Long, Set<Long>> currentlyComparing = new HashMap<>();
+	    return deepEquals(instance, instance2, currentlyComparing);
+//        return shallowEquals(instance, instance2);
+	}
+
+	private boolean shallowEquals(InstanceDump a, InstanceDump b) {
+		if (!this.instancesOfSameClass(a, b)
+				|| a.getInstanceFieldValues().size() != b.getInstanceFieldValues().size()) {
 			return false;
 		}
 
-		ClassDump classDump = instance.getClassDump();
+		ClassDump classDump = a.getClassDump();
 
 		for (InstanceFieldDump field : classDump.getInstanceFields()) {
-			Object value = instance.getInstanceFieldValues().get(field);
-			Object value2 = instance2.getInstanceFieldValues().get(field);
+			Object value = a.getInstanceFieldValues().get(field);
+			Object value2 = b.getInstanceFieldValues().get(field);
 
 			if (!value.equals(value2)) {
+				return false;
+			}
+		}
+		return classDump.getInstanceFields().size() > 0;
+	}
+
+	private boolean deepEquals(InstanceDump a, InstanceDump b, Map<Long, Set<Long>> currentlyComparing) {
+	    if (currentlyComparing.getOrDefault(a.getInstanceId(), Collections.emptySet()).contains(b.getInstanceId())) {
+	    	return true;
+		} else {
+			currentlyComparing.computeIfAbsent(a.getInstanceId(), k -> new HashSet<>()).add(b.getInstanceId());
+		}
+
+	    if (a.getInstanceId().equals(b.getInstanceId())) {
+	    	return true;
+		}
+
+		if(!this.instancesOfSameClass(a, b)
+				|| a.getInstanceFieldValues().size() != b.getInstanceFieldValues().size()) {
+			return false;
+		}
+
+		ClassDump classDump = a.getClassDump();
+
+		for (InstanceFieldDump field : classDump.getInstanceFields()) {
+			Object value = a.getInstanceFieldValues().get(field);
+			Object value2 = b.getInstanceFieldValues().get(field);
+
+			if (value instanceof InstanceDump && value2 instanceof InstanceDump) {
+				if (!deepEquals((InstanceDump) value, (InstanceDump) value2, currentlyComparing)) {
+					return false;
+				}
+			} else if (value instanceof Value && value2 instanceof Value) {
+			    if (!Objects.equals(((Value<?>) value).value, ((Value<?>) value2).value)) {
+			        return false;
+				}
+			} else if (!value.equals(value2)) {
 				return false;
 			}
 		}

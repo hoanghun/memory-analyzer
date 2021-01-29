@@ -195,7 +195,7 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		Map<Long, ArrayDump> arrays = new HashMap<>();
 
 		rawPrimitiveArrayDumps.forEach((key, value) -> {
-			arrays.put(key, new ArrayDump<>(key, this.getClass(value.getItemClassObjectId()), value.getItems()));
+			arrays.put(key, new ArrayDump<>(key, getClass(value.getItemClassObjectId()), value.getItems()));
 		});
 
 		return arrays;
@@ -374,13 +374,13 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 	private void processClassFields(Map<Long, ClassDump> classes, RawMemoryDump rawMemoryDump) {
 		classes.forEach((key, value) -> {
 			rawMemoryDump.getRawClassDumps().get(key).getInstanceFields().forEach((name, strType) -> {
-				value.addInstanceField(name, this.getClass(strType));
+				value.addInstanceField(name, getClass(strType));
 			});
 		});
 
 		classes.forEach((key, value) -> {
 			rawMemoryDump.getRawClassDumps().get(key).getStaticFields().forEach((name, val) -> {
-				value.addStaticField(name, this.getClass(((Value) val).type.toString()), ((Value) val).value);
+				value.addStaticField(name, getClass(((Value) val).type.toString()), ((Value) val).value);
 			});
 		});
 
@@ -427,7 +427,7 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 	 * @param classType Class name (type).
 	 * @return Translated type or null.
 	 */
-	protected Class<?> getClass(String classType) {
+	public static Class<?> getClass(String classType) {
 		return TYPE_TRANSLATION_MAP.get(classType.toLowerCase());
 	}
 }
