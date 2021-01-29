@@ -300,7 +300,18 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 			if (Objects.equals(field.getName(), "value")) {
 				RawPrimitiveArrayDump rawPrimitiveArrayDump = primitiveArrayDumpMap.get((Long) (((Value) value).value));
 				if (rawPrimitiveArrayDump != null) {
-					ret[0] = this.charArrayToString(rawPrimitiveArrayDump.getItems());
+					if ("byte".equals(rawPrimitiveArrayDump.getItemType())) {
+						List<Object> values = rawPrimitiveArrayDump.getItems();
+						byte[] bytes = new byte[values.size()];
+						for (int i = 0; i < values.size(); i++) {
+							if (values.get(i) instanceof Value) {
+								bytes[i] = (byte) ((Value<?>) values.get(i)).value;
+							}
+						}
+						ret[0] = new String(bytes);
+					} else {
+						ret[0] = this.charArrayToString(rawPrimitiveArrayDump.getItems());
+					}
 				}
 			}
 		});

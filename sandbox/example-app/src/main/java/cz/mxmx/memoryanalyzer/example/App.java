@@ -65,6 +65,7 @@ public class App {
 		Child child = new Child();
 		child.name = "Child " + id;
 		child.parent = parent;
+		child.number = id;
 		parent.children.add(child);
 		return child;
 	}

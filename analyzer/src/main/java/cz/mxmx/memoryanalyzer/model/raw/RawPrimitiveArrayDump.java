@@ -33,6 +33,10 @@ public class RawPrimitiveArrayDump {
 		return items;
 	}
 
+	public String getItemType() {
+		return itemType;
+	}
+
 	public void addItem(Object object) {
 		this.items.add(object);
 	}
