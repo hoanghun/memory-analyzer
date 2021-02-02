@@ -11,12 +11,13 @@ public class ReferencesWaste implements Waste {
     /**
      * Title template of the reference waste.
      */
-    private static final String TITLE_TEMPLATE = "References waste analysis.";
+    private static final String TITLE_TEMPLATE = "References waste analysis";
 
     /**
      * Description template of the memory waste.
      */
-    private static final String DESC_TEMPLATE = "Total references count %d, of that %d are null references.";
+    private static final String DESC_TEMPLATE = "Total references count %d, of that %d are null references." +
+            " Null references are %s%% of total references.";
 
     /**
      * The source analyzer.
@@ -50,7 +51,7 @@ public class ReferencesWaste implements Waste {
 
     @Override
     public String getDescription() {
-        return String.format(DESC_TEMPLATE, referencesCount, nullReferencesCount);
+        return String.format(DESC_TEMPLATE, referencesCount, nullReferencesCount, getNominal());
     }
 
     @Override
@@ -70,7 +71,7 @@ public class ReferencesWaste implements Waste {
 
     @Override
     public String getNominal() {
-        return Double.toString(nullReferencesCount / (double)referencesCount);
+        return String.format("%.2f", (nullReferencesCount / (double)referencesCount) * 100);
     }
 
     @Override
