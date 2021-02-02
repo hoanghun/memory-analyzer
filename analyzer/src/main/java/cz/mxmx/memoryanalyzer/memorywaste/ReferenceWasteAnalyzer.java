@@ -36,14 +36,15 @@ public class ReferenceWasteAnalyzer implements WasteAnalyzer {
         for (InstanceFieldDump field : classDump.getInstanceFields()) {
             Object value = instance.getInstanceFieldValues().get(field);
 
+            if (value instanceof InstanceDump || value instanceof String) {
+                referencesCount++;
+            }
+
             if (value instanceof Value && ((Value<?>) value).type.equals(Type.OBJ) && ((Value<?>) value).value instanceof Long) {
                 Long reference = (Long) ((Value<?>) value).value;
-                if (reference != null) {
-                    if (0 == reference) {
-                        nullReferencesCount++;
-                    } else {
-                        referencesCount++;
-                    }
+                referencesCount++;
+                if (0 == reference) {
+                    nullReferencesCount++;
                 }
             }
         }
