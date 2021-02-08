@@ -10,6 +10,8 @@ import cz.mxmx.memoryanalyzer.process.FilteredMemoryDumpProcessor;
 import cz.mxmx.memoryanalyzer.process.MemoryDumpProcessor;
 import cz.mxmx.memoryanalyzer.util.Normalization;
 import edu.tufts.eaftan.hprofparser.parser.HprofParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
@@ -25,6 +27,7 @@ import java.util.stream.Collectors;
  * Default memory analyzer implementation.
  */
 public class DefaultMemoryDumpAnalyzer implements MemoryDumpAnalyzer {
+	private static final Logger log = LoggerFactory.getLogger(DefaultMemoryDumpAnalyzer.class);
 
 	/**
 	 * Memory handler to use in the Hprof Library.
@@ -76,7 +79,9 @@ public class DefaultMemoryDumpAnalyzer implements MemoryDumpAnalyzer {
 			DataInputStream in = new DataInputStream(new BufferedInputStream(fs));
 
 			try {
+				log.info("Starting parsing dump from {}", path);
 				parser.parse(in);
+				log.info("Finished parsing the dump.");
 				in.close();
 			} catch (IOException e) {
 				throw new MemoryDumpAnalysisException(e);
@@ -89,12 +94,12 @@ public class DefaultMemoryDumpAnalyzer implements MemoryDumpAnalyzer {
 	@Override
 	public Set<String> getNamespaces() throws FileNotFoundException, MemoryDumpAnalysisException {
 		this.runAnalysis();
+		log.info("Processing loaded raw dump.");
 		MemoryDump dump = this.genericProcessor.process(this.memoryDump);
+		log.info("Finished processing loaded raw dump.");
 		Set<String> namespaces = new HashSet<>();
 
-		dump.getClasses().forEach((id, cl) -> {
-			namespaces.add(cl.getName());
-		});
+		dump.getClasses().forEach((id, cl) -> namespaces.add(cl.getName()));
 
 		return this.filterNamespaces(namespaces);
 	}
@@ -115,7 +120,11 @@ public class DefaultMemoryDumpAnalyzer implements MemoryDumpAnalyzer {
 	@Override
 	public MemoryDump analyze(List<String> namespaces) throws FileNotFoundException, MemoryDumpAnalysisException {
 		this.runAnalysis();
+
+		log.info("Processing loaded raw dump.");
 		MemoryDumpProcessor processor = new FilteredMemoryDumpProcessor(this.genericProcessor, Normalization.stringToRegexNamespaces(namespaces));
-		return processor.process(this.memoryDump);
+		MemoryDump process = processor.process(this.memoryDump);
+		log.info("Finished processing loaded raw dump.");
+		return process;
 	}
 }

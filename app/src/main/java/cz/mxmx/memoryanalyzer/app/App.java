@@ -5,41 +5,24 @@ import com.google.common.base.Strings;
 import cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer;
 import cz.mxmx.memoryanalyzer.MemoryDumpAnalyzer;
 import cz.mxmx.memoryanalyzer.exception.MemoryDumpAnalysisException;
-import cz.mxmx.memoryanalyzer.memorywaste.DefaultWasteAnalyzerPipeline;
 import cz.mxmx.memoryanalyzer.memorywaste.ReferenceAndDuplicateWasteAnalyzerPipeline;
-import cz.mxmx.memoryanalyzer.memorywaste.WasteAnalyzer;
 import cz.mxmx.memoryanalyzer.memorywaste.WasteAnalyzerPipeline;
-import cz.mxmx.memoryanalyzer.model.InstanceDump;
-import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
 import cz.mxmx.memoryanalyzer.model.memorywaste.Waste;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
+import org.apache.commons.cli.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.xml.transform.Result;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
 
 public class App {
+	private static final Logger log = LoggerFactory.getLogger(App.class);
 
 	public static void main(String[] args) {
 		new App(args);
@@ -89,7 +72,7 @@ public class App {
 				Runnable measure = this.measure();
 
 				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
-				System.out.format("Loading namespaces from %s...\n\n", inputFilePath);
+				log.info("Loading namespaces from {}...\n\n", inputFilePath);
 				Set<String> namespaces = new TreeSet<>(this.getNamespaces(analyzer));
 
 				System.out.println("List of namespaces in the given memory dump:");
@@ -107,7 +90,7 @@ public class App {
 				Runnable measure = this.measure();
 
 				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
-				System.out.format("Analyzing classes from namespace `%s` in `%s`...\n\n", namespace, inputFilePath);
+				log.info("Analyzing classes from namespace `{}` in `{}`...\n\n", namespace, inputFilePath);
 				MemoryDump memoryDump = this.getMemoryDump(analyzer, namespace);
 				this.processMemoryDump(memoryDump, namespace, fields, resultWriters);
 
@@ -117,19 +100,19 @@ public class App {
 			} else if (help) {
 				formatter.printHelp("memory-analyzer", options);
 			} else {
-				System.out.println("No action defined. See --help for more info.");
+				log.info("No action defined. See --help for more info.");
 			}
 
 			System.exit(0);
 
 		} catch (ParseException | MemoryDumpAnalysisException e) {
-			System.out.println("Error: " + e.getMessage());
+			log.error("Error: " + e.getMessage());
 			formatter.printHelp("memory-analyzer", options);
 			System.exit(1);
 		} catch (FileNotFoundException e) {
-			System.out.println("Error: Couldn't find the specified input file.");
+			log.error("Error: Couldn't find the specified input file.");
 		} catch (Exception e) { // print out anything else
-			e.printStackTrace();
+			log.error(e.getMessage());
 		}
 	}
 
@@ -166,7 +149,9 @@ public class App {
 	private void processMemoryDump(MemoryDump memoryDump, String namespace, boolean printFields, List<ResultWriter> resultWriters) {
 		resultWriters.forEach(writer -> writer.write(memoryDump));
 		WasteAnalyzerPipeline wasteAnalyzer = new ReferenceAndDuplicateWasteAnalyzerPipeline();
+		log.info("Starting waste analysis. Using {}.", wasteAnalyzer.getClass().getName());
 		List<Waste> memoryWaste = wasteAnalyzer.findMemoryWaste(memoryDump);
+		log.info("Finished waste analysis.");
 		resultWriters.forEach(writer -> writer.write(memoryWaste, wasteAnalyzer, printFields));
 	}
 
