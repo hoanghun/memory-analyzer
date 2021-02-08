@@ -18,11 +18,11 @@ import java.util.*;
  */
 public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
     private static final Logger log = LoggerFactory.getLogger(DuplicateInstanceWasteAnalyzer.class);
-    private Map<Long, Set<Long>> currentlyComparing = new HashMap<>();
+    private final Map<Long, Set<Long>> currentlyComparing = new HashMap<>();
 
     @Override
     public List<Waste> findMemoryWaste(MemoryDump memoryDump) {
-        log.info("Starting duplicate instance waste analyzer.");
+        log.info("Starting duplicate instance waste analyzer. Using deep equals.");
         List<Waste> wasteList = new ArrayList<>();
         Set<InstanceDump> processedInstances = Collections.synchronizedSet(new HashSet<>());
 
