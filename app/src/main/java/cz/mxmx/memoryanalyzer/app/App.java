@@ -87,6 +87,7 @@ public class App {
 
 				measure.run();
 			} else if (!Strings.isNullOrEmpty(namespace) && !Strings.isNullOrEmpty(inputFilePath)) {
+				resultWriters.add(new ConsoleResultWriter(namespace));
 				Runnable measure = this.measure();
 				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 
@@ -95,9 +96,9 @@ public class App {
 				this.processMemoryDump(memoryDump, fields, resultWriters);
 
 				measure.run();
-				resultWriters.add(new ConsoleResultWriter(namespace));
 				resultWriters.forEach(ResultWriter::close);
 			} else if (excludeNamespace != null && !Strings.isNullOrEmpty(inputFilePath)) {
+				resultWriters.add(new ConsoleResultWriter(excludeNamespace));
 				Runnable measure = this.measure();
 				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 
@@ -106,7 +107,6 @@ public class App {
 				this.processMemoryDump(memoryDump, fields, resultWriters);
 
 				measure.run();
-				resultWriters.add(new ConsoleResultWriter(excludeNamespace));
 				resultWriters.forEach(ResultWriter::close);
 			} else if (help) {
 				formatter.printHelp("memory-analyzer", options);
