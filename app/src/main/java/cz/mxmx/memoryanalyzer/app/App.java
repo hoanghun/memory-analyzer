@@ -16,10 +16,7 @@ import org.slf4j.LoggerFactory;
 import java.io.FileNotFoundException;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class App {
 	private static final Logger log = LoggerFactory.getLogger(App.class);
@@ -55,6 +52,10 @@ public class App {
 		csvOption.setRequired(false);
 		options.addOption(csvOption);
 
+		Option excludeOption = new Option("e", "exclude", true, "Exclude namespaces");
+		excludeOption.setRequired(false);
+		options.addOption(excludeOption);
+
 		CommandLineParser parser = new DefaultParser();
 		HelpFormatter formatter = new HelpFormatter();
 		CommandLine cmd;
@@ -63,10 +64,16 @@ public class App {
 			cmd = parser.parse(options, args);
 			String inputFilePath = cmd.getOptionValue("path");
 			String namespace = cmd.getOptionValue("namespace");
+			String excludeNamespace = cmd.getOptionValue("exclude");
 			boolean list = cmd.hasOption("list");
 			boolean help = cmd.hasOption("help");
 			boolean fields = cmd.hasOption("fields");
 			boolean csv = cmd.hasOption("csv");
+
+			List<ResultWriter> resultWriters = new ArrayList<>();
+			if(csv) {
+				resultWriters.add(new CsvResultWriter("result.csv", namespace));
+			}
 
 			if (list && !Strings.isNullOrEmpty(inputFilePath)) {
 				Runnable measure = this.measure();
@@ -80,22 +87,26 @@ public class App {
 
 				measure.run();
 			} else if (!Strings.isNullOrEmpty(namespace) && !Strings.isNullOrEmpty(inputFilePath)) {
-				List<ResultWriter> resultWriters = new ArrayList<>();
-				resultWriters.add(new ConsoleResultWriter(namespace));
-
-				if(csv) {
-					resultWriters.add(new CsvResultWriter("result.csv", namespace));
-				}
-
 				Runnable measure = this.measure();
-
 				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
+
 				log.info("Analyzing classes from namespace `{}` in `{}`...\n\n", namespace, inputFilePath);
 				MemoryDump memoryDump = this.getMemoryDump(analyzer, namespace);
-				this.processMemoryDump(memoryDump, namespace, fields, resultWriters);
+				this.processMemoryDump(memoryDump, fields, resultWriters);
 
 				measure.run();
+				resultWriters.add(new ConsoleResultWriter(namespace));
+				resultWriters.forEach(ResultWriter::close);
+			} else if (excludeNamespace != null && !Strings.isNullOrEmpty(inputFilePath)) {
+				Runnable measure = this.measure();
+				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 
+				log.info("Analyzing classes from excluding namespace `{}` in `{}`...\n\n", excludeNamespace, inputFilePath);
+				MemoryDump memoryDump = this.getMemoryDumpExcludingNamespace(analyzer, excludeNamespace);
+				this.processMemoryDump(memoryDump, fields, resultWriters);
+
+				measure.run();
+				resultWriters.add(new ConsoleResultWriter(excludeNamespace));
 				resultWriters.forEach(ResultWriter::close);
 			} else if (help) {
 				formatter.printHelp("memory-analyzer", options);
@@ -139,18 +150,23 @@ public class App {
 		return analyzer.analyze(Lists.newArrayList(namespace));
 	}
 
+	private MemoryDump getMemoryDumpExcludingNamespace(MemoryDumpAnalyzer analyzer, String namespace) throws FileNotFoundException, MemoryDumpAnalysisException {
+		return analyzer.excludeAndAnalyze(Collections.singletonList(namespace));
+	}
+
 	/**
 	 * Run a processing of the given memory dump.
 	 * @param memoryDump Memory dump.
-	 * @param namespace Namespace to filter.
 	 * @param printFields True if the values should be printed out.
 	 * @param resultWriters Result writer.
 	 */
-	private void processMemoryDump(MemoryDump memoryDump, String namespace, boolean printFields, List<ResultWriter> resultWriters) {
+	private void processMemoryDump(MemoryDump memoryDump, boolean printFields, List<ResultWriter> resultWriters) {
 		resultWriters.forEach(writer -> writer.write(memoryDump));
 		WasteAnalyzerPipeline wasteAnalyzer = new ReferenceAndDuplicateWasteAnalyzerPipeline();
+
 		log.info("Starting waste analysis. Using {}.", wasteAnalyzer.getClass().getName());
 		List<Waste> memoryWaste = wasteAnalyzer.findMemoryWaste(memoryDump);
+
 		log.info("Finished waste analysis.");
 		resultWriters.forEach(writer -> writer.write(memoryWaste, wasteAnalyzer, printFields));
 	}

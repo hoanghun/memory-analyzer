@@ -15,89 +15,99 @@ import java.util.Map;
  */
 public class FilteredMemoryDumpProcessor implements MemoryDumpProcessor {
 
-	/**
-	 * Cache to stop memory dumps from re-processing.
-	 */
-	private final Map<RawMemoryDump, MemoryDump> cache = new HashMap<>();
+    /**
+     * Cache to stop memory dumps from re-processing.
+     */
+    private final Map<RawMemoryDump, MemoryDump> cache = new HashMap<>();
 
-	/**
-	 * Generic memory dump to get raw data.
-	 */
-	private final MemoryDumpProcessor genericMemoryDumpProcessor;
+    /**
+     * Generic memory dump to get raw data.
+     */
+    private final MemoryDumpProcessor genericMemoryDumpProcessor;
 
-	/**
-	 * Namespaces to use as a filter.
-	 */
-	private final Collection<String> namespaces;
+    /**
+     * Namespaces to use as a filter.
+     */
+    private final Collection<String> namespaces;
 
-	/**
-	 * Creates user-specific instances and classes processor.
-	 * @param genericMemoryDumpProcessor Generic processor which handles pre-processing.
-	 * @param namespaces Namespaces to use as a filter.
-	 */
-	public FilteredMemoryDumpProcessor(MemoryDumpProcessor genericMemoryDumpProcessor, Collection<String> namespaces) {
-		this.genericMemoryDumpProcessor = genericMemoryDumpProcessor;
-		this.namespaces = namespaces;
-	}
+    private final boolean excludeNamespace;
 
-	@Override
-	public MemoryDump process(RawMemoryDump rawMemoryDump) {
-		if (this.cache.containsKey(rawMemoryDump)) {
-			return this.cache.get(rawMemoryDump);
-		}
+    /**
+     * Creates user-specific instances and classes processor.
+     *
+     * @param genericMemoryDumpProcessor Generic processor which handles pre-processing.
+     * @param namespaces                 Namespaces to use as a filter.
+     */
+    public FilteredMemoryDumpProcessor(MemoryDumpProcessor genericMemoryDumpProcessor, Collection<String> namespaces, boolean excludeNamespace) {
+        this.genericMemoryDumpProcessor = genericMemoryDumpProcessor;
+        this.namespaces = namespaces;
+        this.excludeNamespace = excludeNamespace;
+    }
 
-		MemoryDump preprocessed = this.genericMemoryDumpProcessor.process(rawMemoryDump);
-		Map<Long, ClassDump> userClasses = this.getUserClasses(preprocessed.getClasses());
-		Map<Long, InstanceDump> userInstances = this.getUserInstances(preprocessed.getInstances(), userClasses);
+    @Override
+    public MemoryDump process(RawMemoryDump rawMemoryDump) {
+        if (this.cache.containsKey(rawMemoryDump)) {
+            return this.cache.get(rawMemoryDump);
+        }
 
-		ProcessedMemoryDump processedMemoryDump = new ProcessedMemoryDump()
-				.setUserNamespaces(this.namespaces)
-				.setDumpHeader(preprocessed.getDumpHeader())
-				.setInstances(preprocessed.getInstances())
-				.setClasses(preprocessed.getClasses())
-				.setUserInstances(userInstances)
-				.setUserClasses(userClasses)
-				.setPrimitiveArrays(preprocessed.getPrimitiveArrays())
-				.setInstanceArrays(preprocessed.getInstanceArrays());
+        MemoryDump preprocessed = this.genericMemoryDumpProcessor.process(rawMemoryDump);
+        Map<Long, ClassDump> userClasses = this.getUserClasses(preprocessed.getClasses());
+        Map<Long, InstanceDump> userInstances = this.getUserInstances(preprocessed.getInstances(), userClasses);
 
-		this.cache.put(rawMemoryDump, processedMemoryDump);
-		return processedMemoryDump;
-	}
+        ProcessedMemoryDump processedMemoryDump = new ProcessedMemoryDump()
+                .setUserNamespaces(this.namespaces)
+                .setDumpHeader(preprocessed.getDumpHeader())
+                .setInstances(preprocessed.getInstances())
+                .setClasses(preprocessed.getClasses())
+                .setUserInstances(userInstances)
+                .setUserClasses(userClasses)
+                .setPrimitiveArrays(preprocessed.getPrimitiveArrays())
+                .setInstanceArrays(preprocessed.getInstanceArrays());
 
-	/**
-	 * Filters instances by the namespaces.
-	 * @param instances Instances to filter.
-	 * @param userClasses User classes.
-	 * @return Filtered instances.
-	 */
-	protected Map<Long, InstanceDump> getUserInstances(Map<Long, InstanceDump> instances, Map<Long, ClassDump> userClasses) {
-		Map<Long, InstanceDump> userInstances = new HashMap<>();
+        this.cache.put(rawMemoryDump, processedMemoryDump);
+        return processedMemoryDump;
+    }
 
-		instances.forEach((key, value) -> {
-			if (userClasses.containsKey(value.getClassDump().getClassId())) {
-				userInstances.put(key, value);
-			}
-		});
+    /**
+     * Filters instances by the namespaces.
+     *
+     * @param instances   Instances to filter.
+     * @param userClasses User classes.
+     * @return Filtered instances.
+     */
+    protected Map<Long, InstanceDump> getUserInstances(Map<Long, InstanceDump> instances, Map<Long, ClassDump> userClasses) {
+        Map<Long, InstanceDump> userInstances = new HashMap<>();
 
-		return userInstances;
-	}
+        instances.forEach((key, value) -> {
+            if (userClasses.containsKey(value.getClassDump().getClassId())) {
+                userInstances.put(key, value);
+            }
+        });
 
-	/**
-	 * Filters classes by the namespaces.
-	 * @param classes Classes to filter.
-	 * @return Filtered classes.
-	 */
-	protected Map<Long, ClassDump> getUserClasses(Map<Long, ClassDump> classes) {
-		Map<Long, ClassDump> userClasses = new HashMap<>();
+        return userInstances;
+    }
 
-		classes.forEach((key, value) -> {
-			this.namespaces.forEach((namespace) -> {
-				if (value.getName().matches(namespace)) {
-					userClasses.put(key, value);
-				}
-			});
-		});
+    /**
+     * Filters classes by the namespaces.
+     *
+     * @param classes Classes to filter.
+     * @return Filtered classes.
+     */
+    protected Map<Long, ClassDump> getUserClasses(Map<Long, ClassDump> classes) {
+        Map<Long, ClassDump> userClasses = new HashMap<>();
 
-		return userClasses;
-	}
+        classes.forEach((key, value) -> this.namespaces.forEach((namespace) -> {
+            if (this.excludeNamespace) {
+                if (!value.getName().matches(namespace)) {
+                    userClasses.put(key, value);
+                }
+            } else {
+                if (value.getName().matches(namespace)) {
+                    userClasses.put(key, value);
+                }
+            }
+        }));
+
+        return userClasses;
+    }
 }
