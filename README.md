@@ -17,6 +17,7 @@ Contains the app that interacts with the user. The app is CLI and contains the f
 - `-p` / `--path` - Path to the source HPROF file to analyze (required).
 - `-l` / `--list` - If specified, the "list namespaces" action will be performed.
 - `-n` / `--namespace` - If specified, the "waste analysis" action will be performed. As a parameter it expects the namespace to filter. e.g. `com.example`.
+- `-e` / `--exclude` - If specified, the "waste analysis" action will be performed. As a parameter it expects the namespace to exclude. e.g. `com.example`.
 - `-f` / `--fields` - Add field values to the found instances (works only with `-n`).
 - `-c` / `--csv` - Prints the results also to the `results.csv` file, along with the console output (only works with `-n`).
 - `-h` / `--help` - Help.
