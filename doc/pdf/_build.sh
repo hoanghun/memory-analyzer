@@ -1,1 +1,0 @@
-pdflatex student-titulka.tex
