@@ -15,7 +15,6 @@ public class DefaultWasteAnalyzerPipeline extends WasteAnalyzerPipeline {
 		put(new DuplicateInstanceWasteAnalyzer(), "Duplicate instances");
 		put(new ListWasteAnalyzer(), "Ineffective list usage");
 		put(new ListOfDuplicatesAnalyzer(), "List of duplicates");
-		put(new ReferenceWasteAnalyzer(), "References analysis");
 	}};
 
 	/**

@@ -6,6 +6,7 @@ import cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer;
 import cz.mxmx.memoryanalyzer.MemoryDumpAnalyzer;
 import cz.mxmx.memoryanalyzer.exception.MemoryDumpAnalysisException;
 import cz.mxmx.memoryanalyzer.memorywaste.DefaultWasteAnalyzerPipeline;
+import cz.mxmx.memoryanalyzer.memorywaste.ReferenceAndDuplicateWasteAnalyzerPipeline;
 import cz.mxmx.memoryanalyzer.memorywaste.WasteAnalyzer;
 import cz.mxmx.memoryanalyzer.memorywaste.WasteAnalyzerPipeline;
 import cz.mxmx.memoryanalyzer.model.InstanceDump;
@@ -40,7 +41,7 @@ import java.util.stream.Collectors;
 
 public class App {
 
-	public static void main(String[] args) throws IOException, MemoryDumpAnalysisException {
+	public static void main(String[] args) {
 		new App(args);
 	}
 
@@ -92,9 +93,7 @@ public class App {
 				Set<String> namespaces = new TreeSet<>(this.getNamespaces(analyzer));
 
 				System.out.println("List of namespaces in the given memory dump:");
-				namespaces.forEach(ns -> {
-					System.out.format("\t%s\n", ns);
-				});
+				namespaces.forEach(ns -> System.out.format("\t%s\n", ns));
 
 				measure.run();
 			} else if (!Strings.isNullOrEmpty(namespace) && !Strings.isNullOrEmpty(inputFilePath)) {
@@ -166,7 +165,7 @@ public class App {
 	 */
 	private void processMemoryDump(MemoryDump memoryDump, String namespace, boolean printFields, List<ResultWriter> resultWriters) {
 		resultWriters.forEach(writer -> writer.write(memoryDump));
-		WasteAnalyzerPipeline wasteAnalyzer = new DefaultWasteAnalyzerPipeline();
+		WasteAnalyzerPipeline wasteAnalyzer = new ReferenceAndDuplicateWasteAnalyzerPipeline();
 		List<Waste> memoryWaste = wasteAnalyzer.findMemoryWaste(memoryDump);
 		resultWriters.forEach(writer -> writer.write(memoryWaste, wasteAnalyzer, printFields));
 	}
