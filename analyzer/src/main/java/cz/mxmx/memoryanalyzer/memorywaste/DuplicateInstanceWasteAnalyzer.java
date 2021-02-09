@@ -22,34 +22,26 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 
     @Override
     public List<Waste> findMemoryWaste(MemoryDump memoryDump) {
-        log.info("Starting duplicate instance waste analyzer. Using deep equals.");
+        log.info("Instance waste analysis.");
         List<Waste> wasteList = new ArrayList<>();
-        Set<InstanceDump> processedInstances = Collections.synchronizedSet(new HashSet<>());
 
-        Map<Long, InstanceDump> userInstances = memoryDump.getUserInstances();
-        int onePercent = userInstances.size() / 100;
-        int currentPercent = 0;
 
-        for (Long id : userInstances.keySet()) {
-            InstanceDump instance = userInstances.get(id);
+        List<InstanceDump> instances = new ArrayList<>(memoryDump.getUserInstances().values());
+        int onePercent = instances.size() / 100;
+        log.info("Starting duplicate instance waste analyzer. Using deep equals.");
 
-            processedInstances.add(instance);
-            if (processedInstances.size() % onePercent == 0) {
-                currentPercent++;
-                log.info("Done {}%.", currentPercent);
+        for (int i = 0; i < instances.size() - 1; i++) {
+            InstanceDump instance = instances.get(i);
+            if (i % onePercent == 0) {
+                log.info("Done {}%.", (i / ((double) instances.size() - 2)) * 100);
             }
+            for (int j = i + 1; j < instances.size(); j++) {
+                InstanceDump instanceToCompareWith = instances.get(j);
 
-            memoryDump.getUserInstances().keySet().forEach(id2 -> {
-                InstanceDump instance2 = memoryDump.getUserInstances().get(id2);
-
-                if (id.equals(id2) || processedInstances.contains(instance2)) {
-                    return;
+                if (this.instancesAreSame(instance, instanceToCompareWith)) {
+                    this.mergeWasteList(wasteList, instance, instanceToCompareWith);
                 }
-
-                if (this.instancesAreSame(instance, instance2)) {
-                    this.mergeWasteList(wasteList, instance, instance2);
-                }
-            });
+            }
         }
 
         log.info("Finished duplicate instance waste analyses.");
@@ -70,6 +62,13 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 //        return shallowEquals(instance, instance2);
     }
 
+    /**
+     * @deprecated
+     * Deprecated version to compare objects. Can compare only references as long values and Strings.
+     * @param a instance dump a
+     * @param b instance dumb b
+     * @return true if objects have same references or string values.
+     */
     private boolean shallowEquals(InstanceDump a, InstanceDump b) {
         if (!this.instancesOfSameClass(a, b)
                 || a.getInstanceFieldValues().size() != b.getInstanceFieldValues().size()) {
@@ -90,12 +89,6 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
     }
 
     private boolean deepEquals(InstanceDump a, InstanceDump b, Map<Long, Set<Long>> currentlyComparing) {
-        if (currentlyComparing.getOrDefault(a.getInstanceId(), Collections.emptySet()).contains(b.getInstanceId())) {
-            return true;
-        } else {
-            currentlyComparing.computeIfAbsent(a.getInstanceId(), k -> new HashSet<>()).add(b.getInstanceId());
-        }
-
         if (a.getInstanceId().equals(b.getInstanceId())) {
             return true;
         }
@@ -103,6 +96,12 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         if (!this.instancesOfSameClass(a, b)
                 || a.getInstanceFieldValues().size() != b.getInstanceFieldValues().size()) {
             return false;
+        }
+
+        if (currentlyComparing.getOrDefault(a.getInstanceId(), Collections.emptySet()).contains(b.getInstanceId())) {
+            return true;
+        } else {
+            currentlyComparing.computeIfAbsent(a.getInstanceId(), k -> new HashSet<>()).add(b.getInstanceId());
         }
 
         ClassDump classDump = a.getClassDump();
