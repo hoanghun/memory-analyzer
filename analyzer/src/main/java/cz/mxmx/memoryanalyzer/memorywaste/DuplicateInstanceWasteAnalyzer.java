@@ -63,11 +63,10 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
     }
 
     /**
-     * @deprecated
-     * Deprecated version to compare objects. Can compare only references as long values and Strings.
      * @param a instance dump a
      * @param b instance dumb b
      * @return true if objects have same references or string values.
+     * @deprecated Deprecated version to compare objects. Can compare only references as long values and Strings.
      */
     private boolean shallowEquals(InstanceDump a, InstanceDump b) {
         if (!this.instancesOfSameClass(a, b)
@@ -98,7 +97,13 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
             return false;
         }
 
+        Optional<Boolean> cacheResult = getResultFromCache(a, b);
+        if (cacheResult.isPresent()) {
+            return cacheResult.get();
+        }
+
         if (currentlyComparing.getOrDefault(a.getInstanceId(), Collections.emptySet()).contains(b.getInstanceId())) {
+            this.cacheResult = false; // we cannot cache result based on this, could be false positive
             return true;
         } else {
             currentlyComparing.computeIfAbsent(a.getInstanceId(), k -> new HashSet<>()).add(b.getInstanceId());
@@ -123,7 +128,22 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
             }
         }
 
-        return classDump.getInstanceFields().size() > 0;
+        instanceComparisonResult = instanceComparisonResult && classDump.getInstanceFields().size() > 0;
+        if (this.cacheResult) {
+            cacheResult(a, b, instanceComparisonResult);
+        } else {
+            this.cacheResult = true;
+        }
+
+        return instanceComparisonResult;
+    }
+
+    private void cacheResult(InstanceDump a, InstanceDump b, boolean result) {
+        cache.cacheComparisonResult(a, b, result);
+    }
+
+    private Optional<Boolean> getResultFromCache(InstanceDump a, InstanceDump b) {
+        return cache.instancesEqual(a, b);
     }
 
     /**
