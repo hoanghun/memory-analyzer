@@ -22,16 +22,4 @@ public interface InstanceComparisonCache {
      * @param comparisonResult comparison result of these two instances
      */
     void cacheComparisonResult(InstanceDump a, InstanceDump b, boolean comparisonResult);
-
-    /**
-     * Returns cache hit count
-     * @return cache hit count
-     */
-    long getCacheHitCount();
-
-    /**
-     * Returns cache misses count
-     * @return cache misses count
-     */
-    long getCacheMissCount();
 }

@@ -1,8 +1,10 @@
 package cz.mxmx.memoryanalyzer.memorywaste;
 
 import com.google.common.collect.Lists;
-import cz.mxmx.memoryanalyzer.cache.DefaultInstanceComparisonCache;
+import cz.mxmx.memoryanalyzer.cache.DefaultInstanceCacheWithStatistics;
+import cz.mxmx.memoryanalyzer.cache.DummyInstanceComparisonCache;
 import cz.mxmx.memoryanalyzer.cache.InstanceComparisonCache;
+import cz.mxmx.memoryanalyzer.cache.InstanceComparisonCacheWithStatistics;
 import cz.mxmx.memoryanalyzer.model.ClassDump;
 import cz.mxmx.memoryanalyzer.model.InstanceDump;
 import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
@@ -21,15 +23,15 @@ import java.util.*;
 public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
     private static final Logger log = LoggerFactory.getLogger(DuplicateInstanceWasteAnalyzer.class);
     private final Map<Long, Set<Long>> currentlyComparing = new HashMap<>();
-    private final InstanceComparisonCache cache;
+    private final InstanceComparisonCacheWithStatistics cache;
     private boolean cacheResult = true;
 
     public DuplicateInstanceWasteAnalyzer() {
-        cache = new DefaultInstanceComparisonCache();
+        this.cache = new DefaultInstanceCacheWithStatistics(new DummyInstanceComparisonCache());
     }
 
     public DuplicateInstanceWasteAnalyzer(InstanceComparisonCache cache) {
-        this.cache = cache;
+        this.cache = new DefaultInstanceCacheWithStatistics(cache);
     }
 
     @Override

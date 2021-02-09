@@ -15,14 +15,4 @@ public class DummyInstanceComparisonCache implements InstanceComparisonCache {
     public void cacheComparisonResult(InstanceDump a, InstanceDump b, boolean comparisonResult) {
 
     }
-
-    @Override
-    public long getCacheHitCount() {
-        return 0;
-    }
-
-    @Override
-    public long getCacheMissCount() {
-        return 0;
-    }
 }
