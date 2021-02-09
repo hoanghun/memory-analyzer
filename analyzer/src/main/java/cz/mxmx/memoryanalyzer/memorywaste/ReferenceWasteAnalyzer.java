@@ -4,17 +4,25 @@ import cz.mxmx.memoryanalyzer.model.ClassDump;
 import cz.mxmx.memoryanalyzer.model.InstanceDump;
 import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
+import cz.mxmx.memoryanalyzer.model.memorywaste.ReferenceCounter;
 import cz.mxmx.memoryanalyzer.model.memorywaste.ReferencesWaste;
 import cz.mxmx.memoryanalyzer.model.memorywaste.Waste;
 import edu.tufts.eaftan.hprofparser.parser.datastructures.Type;
 import edu.tufts.eaftan.hprofparser.parser.datastructures.Value;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class ReferenceWasteAnalyzer implements WasteAnalyzer {
+    private static final Logger log = LoggerFactory.getLogger(ReferenceWasteAnalyzer.class);
 
     @Override
     public List<Waste> findMemoryWaste(MemoryDump memoryDump) {
+        log.info("Starting reference waste analysis");
+
         Map<Long, InstanceDump> userInstances = memoryDump.getUserInstances();
         long referencesCount = 0;
         long nullReferencesCount = 0;
@@ -25,10 +33,17 @@ public class ReferenceWasteAnalyzer implements WasteAnalyzer {
             nullReferencesCount += references.getNullReferencesCount();
         }
 
+        log.info("Finished reference waste analysis");
+
         return Collections.singletonList(new ReferencesWaste(this, referencesCount, nullReferencesCount));
     }
 
-    private ReferenceCounter countReferences(InstanceDump instance) {
+    /**
+     * Calculates total count of references and null references on single instance. Always NullReferencesCount <= ReferencesCount
+     * @param instance instance dump to count fields for
+     * @return dto with values for references counts
+     */
+    public ReferenceCounter countReferences(InstanceDump instance) {
         ClassDump classDump = instance.getClassDump();
         long referencesCount = 0;
         long nullReferencesCount = 0;
@@ -52,27 +67,4 @@ public class ReferenceWasteAnalyzer implements WasteAnalyzer {
         return new ReferenceCounter(referencesCount, nullReferencesCount, instance.getInstanceId());
     }
 
-    private static class ReferenceCounter {
-        private final long referencesCount;
-        private final long nullReferencesCount;
-        private final long instanceId;
-
-        public ReferenceCounter(long referencesCount, long nullReferencesCount, long instanceId) {
-            this.referencesCount = referencesCount;
-            this.nullReferencesCount = nullReferencesCount;
-            this.instanceId = instanceId;
-        }
-
-        public long getReferencesCount() {
-            return referencesCount;
-        }
-
-        public long getNullReferencesCount() {
-            return nullReferencesCount;
-        }
-
-        public long getInstanceId() {
-            return instanceId;
-        }
-    }
 }
