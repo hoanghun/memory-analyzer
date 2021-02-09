@@ -1,41 +1,11 @@
 package cz.mxmx.memoryanalyzer.process;
 
-import cz.mxmx.memoryanalyzer.model.AllocSite;
-import cz.mxmx.memoryanalyzer.model.AllocSiteParent;
-import cz.mxmx.memoryanalyzer.model.ArrayDump;
-import cz.mxmx.memoryanalyzer.model.ClassDump;
-import cz.mxmx.memoryanalyzer.model.DumpHeader;
-import cz.mxmx.memoryanalyzer.model.InstanceArrayDump;
-import cz.mxmx.memoryanalyzer.model.InstanceDump;
-import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
-import cz.mxmx.memoryanalyzer.model.MemoryDump;
-import cz.mxmx.memoryanalyzer.model.ProcessedMemoryDump;
-import cz.mxmx.memoryanalyzer.model.StackFrame;
-import cz.mxmx.memoryanalyzer.model.StackTrace;
-import cz.mxmx.memoryanalyzer.model.raw.RawAllocSite;
-import cz.mxmx.memoryanalyzer.model.raw.RawAllocSiteParent;
-import cz.mxmx.memoryanalyzer.model.raw.RawClassDump;
-import cz.mxmx.memoryanalyzer.model.raw.RawDumpHeader;
-import cz.mxmx.memoryanalyzer.model.raw.RawInstanceDump;
-import cz.mxmx.memoryanalyzer.model.raw.RawLoadClassDump;
-import cz.mxmx.memoryanalyzer.model.raw.RawMemoryDump;
-import cz.mxmx.memoryanalyzer.model.raw.RawObjectArrayDump;
-import cz.mxmx.memoryanalyzer.model.raw.RawPrimitiveArrayDump;
-import cz.mxmx.memoryanalyzer.model.raw.RawStackFrame;
-import cz.mxmx.memoryanalyzer.model.raw.RawStackTrace;
+import cz.mxmx.memoryanalyzer.model.*;
+import cz.mxmx.memoryanalyzer.model.raw.*;
 import cz.mxmx.memoryanalyzer.util.Normalization;
 import edu.tufts.eaftan.hprofparser.parser.datastructures.Value;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Queue;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -298,14 +268,14 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 
 		instanceDump.getInstanceFieldValues().forEach((field, value) -> {
 			if (Objects.equals(field.getName(), "value")) {
-				RawPrimitiveArrayDump rawPrimitiveArrayDump = primitiveArrayDumpMap.get((Long) (((Value) value).value));
+				RawPrimitiveArrayDump rawPrimitiveArrayDump = primitiveArrayDumpMap.get(((Value) value).value);
 				if (rawPrimitiveArrayDump != null) {
 					if ("byte".equals(rawPrimitiveArrayDump.getItemType())) {
 						List<Object> values = rawPrimitiveArrayDump.getItems();
 						byte[] bytes = new byte[values.size()];
 						for (int i = 0; i < values.size(); i++) {
 							if (values.get(i) instanceof Value) {
-								bytes[i] = (byte) ((Value<?>) values.get(i)).value;
+								bytes[i] = (byte) ((Value) values.get(i)).value;
 							}
 						}
 						ret[0] = new String(bytes);
