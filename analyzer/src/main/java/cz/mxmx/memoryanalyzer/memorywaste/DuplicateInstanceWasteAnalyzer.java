@@ -1,6 +1,8 @@
 package cz.mxmx.memoryanalyzer.memorywaste;
 
 import com.google.common.collect.Lists;
+import cz.mxmx.memoryanalyzer.cache.DefaultInstanceComparisonCache;
+import cz.mxmx.memoryanalyzer.cache.InstanceComparisonCache;
 import cz.mxmx.memoryanalyzer.model.ClassDump;
 import cz.mxmx.memoryanalyzer.model.InstanceDump;
 import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
@@ -19,12 +21,21 @@ import java.util.*;
 public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
     private static final Logger log = LoggerFactory.getLogger(DuplicateInstanceWasteAnalyzer.class);
     private final Map<Long, Set<Long>> currentlyComparing = new HashMap<>();
+    private final InstanceComparisonCache cache;
+    private boolean cacheResult = true;
+
+    public DuplicateInstanceWasteAnalyzer() {
+        cache = new DefaultInstanceComparisonCache();
+    }
+
+    public DuplicateInstanceWasteAnalyzer(InstanceComparisonCache cache) {
+        this.cache = cache;
+    }
 
     @Override
     public List<Waste> findMemoryWaste(MemoryDump memoryDump) {
         log.info("Instance waste analysis.");
         List<Waste> wasteList = new ArrayList<>();
-
 
         List<InstanceDump> instances = new ArrayList<>(memoryDump.getUserInstances().values());
         int onePercent = instances.size() / 100;
@@ -45,6 +56,8 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         }
 
         log.info("Finished duplicate instance waste analyses.");
+
+        log.info("Cache statistics - hit: {}, miss: {}.", cache.getCacheHitCount(), cache.getCacheMissCount());
 
         return wasteList;
     }
@@ -111,20 +124,24 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 
         ClassDump classDump = a.getClassDump();
 
+        boolean instanceComparisonResult = true;
         for (InstanceFieldDump field : classDump.getInstanceFields()) {
             Object value = a.getInstanceFieldValues().get(field);
             Object value2 = b.getInstanceFieldValues().get(field);
 
             if (value instanceof InstanceDump && value2 instanceof InstanceDump) {
                 if (!deepEquals((InstanceDump) value, (InstanceDump) value2, currentlyComparing)) {
-                    return false;
+                    instanceComparisonResult = false;
+                    break;
                 }
             } else if (value instanceof Value && value2 instanceof Value) {
                 if (!Objects.equals(((Value<?>) value).value, ((Value<?>) value2).value)) {
-                    return false;
+                    instanceComparisonResult = false;
+                    break;
                 }
             } else if (!value.equals(value2)) {
-                return false;
+                instanceComparisonResult = false;
+                break;
             }
         }
 
