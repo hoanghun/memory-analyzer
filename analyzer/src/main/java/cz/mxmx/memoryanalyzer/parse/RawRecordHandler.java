@@ -1,31 +1,9 @@
 package cz.mxmx.memoryanalyzer.parse;
 
-import cz.mxmx.memoryanalyzer.model.raw.RawAllocSite;
-import cz.mxmx.memoryanalyzer.model.raw.RawAllocSiteParent;
-import cz.mxmx.memoryanalyzer.model.raw.RawClassDump;
-import cz.mxmx.memoryanalyzer.model.raw.RawDumpHeader;
-import cz.mxmx.memoryanalyzer.model.raw.RawHeapSummary;
-import cz.mxmx.memoryanalyzer.model.raw.RawInstanceDump;
-import cz.mxmx.memoryanalyzer.model.raw.RawLoadClassDump;
-import cz.mxmx.memoryanalyzer.model.raw.RawMemoryDump;
-import cz.mxmx.memoryanalyzer.model.raw.RawObjectArrayDump;
-import cz.mxmx.memoryanalyzer.model.raw.RawPrimitiveArrayDump;
-import cz.mxmx.memoryanalyzer.model.raw.RawStackFrame;
-import cz.mxmx.memoryanalyzer.model.raw.RawStackTrace;
-import edu.tufts.eaftan.hprofparser.parser.datastructures.AllocSite;
-import edu.tufts.eaftan.hprofparser.parser.datastructures.ClassInfo;
-import edu.tufts.eaftan.hprofparser.parser.datastructures.Constant;
-import edu.tufts.eaftan.hprofparser.parser.datastructures.InstanceField;
-import edu.tufts.eaftan.hprofparser.parser.datastructures.Static;
-import edu.tufts.eaftan.hprofparser.parser.datastructures.Value;
+import cz.mxmx.memoryanalyzer.model.raw.*;
+import edu.tufts.eaftan.hprofparser.parser.datastructures.*;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -177,10 +155,8 @@ public class RawRecordHandler extends RecordHandler {
 				ClassInfo ci = this.classMap.get(nextClass);
 				nextClass = ci.superClassObjId;
 				InstanceField[] var11 = ci.instanceFields;
-				int var12 = var11.length;
 
-				for (int var13 = 0; var13 < var12; ++var13) {
-					InstanceField field = var11[var13];
+				for (InstanceField field : var11) {
 					rawInstanceDump.addInstanceValue(this.stringMap.get(field.fieldNameStringId), instanceFieldValues[i]);
 					++i;
 				}
