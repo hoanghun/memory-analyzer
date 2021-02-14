@@ -118,7 +118,7 @@ public class DeepEqualsTest {
         ClassDump childClassDump = new ClassDump(classId++, "cz.fav.zcu.Child", 1, null);
 
         childClassDump.addInstanceField("ref", GenericMemoryDumpProcessor.getClass("object"));
-        childClassDump.addInstanceField("intos", GenericMemoryDumpProcessor.getClass("int"));
+        childClassDump.addInstanceField("int", GenericMemoryDumpProcessor.getClass("int"));
 
         InstanceFieldDump<?> instanceFieldDump = childClassDump.getInstanceFields().get(1);
         InstanceDump firstChild = new InstanceDump(id++, childClassDump);

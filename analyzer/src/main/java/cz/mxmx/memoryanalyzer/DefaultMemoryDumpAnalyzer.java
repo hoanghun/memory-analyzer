@@ -55,7 +55,7 @@ public class DefaultMemoryDumpAnalyzer implements MemoryDumpAnalyzer {
     }
 
     /**
-     * CReates an analyzer of the given dump.
+     * Creates an analyzer of the given dump.
      *
      * @param path          Path to the dump.
      * @param recordHandler Record handler.
