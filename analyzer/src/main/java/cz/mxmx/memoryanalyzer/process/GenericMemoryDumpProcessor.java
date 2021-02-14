@@ -287,8 +287,8 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
                         List<Object> values = rawPrimitiveArrayDump.getItems();
                         byte[] bytes = new byte[values.size()];
                         for (int i = 0; i < values.size(); i++) {
-                            if (values.get(i) instanceof Value) {
-                                bytes[i] = (byte) ((Value<?>) values.get(i)).value;
+                            if (values.get(i) instanceof Value<?>) {
+                                bytes[i]= (Byte) ((Value<?>) values.get(i)).value;
                             }
                         }
                         ret[0] = new String(bytes);
