@@ -42,7 +42,7 @@ public class ClassDump {
 	}
 
 	public void addInstanceField(String name, Class<?> type) {
-		this.instanceFields.add(new InstanceFieldDump(name, type));
+		this.instanceFields.add(new InstanceFieldDump<>(name, type));
 	}
 
 	public void addStaticField(String name, Class<?> type, Object value) {
