@@ -12,32 +12,23 @@ public class BigIntegerKeyInstanceComparisonCache implements InstanceComparisonC
 
     @Override
     public Optional<Boolean> instancesEqual(InstanceDump a, InstanceDump b) {
-        InstanceDump first = a.getInstanceId() < b.getInstanceId() ? a : b;
-        InstanceDump second = first == a ? b : a;
-
-        BigInteger key = applySzudziksFunction(first.getInstanceId(), second.getInstanceId());
+        BigInteger key = createKey(a, b);
         return Optional.ofNullable(cache.get(key));
     }
 
     @Override
     public void cacheComparisonResult(InstanceDump a, InstanceDump b, boolean comparisonResult) {
-        InstanceDump first = a.getInstanceId() < b.getInstanceId() ? a : b;
-        InstanceDump second = first == a ? b : a;
-
-        BigInteger key = applySzudziksFunction(first.getInstanceId(), second.getInstanceId());
+        BigInteger key = createKey(a, b);
         cache.put(key, comparisonResult);
     }
 
-    private BigInteger applySzudziksFunction(long a, long b) {
-        BigInteger bigA = BigInteger.valueOf(a);
-        BigInteger bigB = BigInteger.valueOf(b);
-        BigInteger result;
-        if (a >= b) {
-            result = bigA.multiply(bigA).add(bigA).add(bigB);
-        } else {
-            result = bigA.add(bigB).multiply(bigB);
-        }
+    private BigInteger createKey(InstanceDump a, InstanceDump b) {
+        InstanceDump first = a.getInstanceId() < b.getInstanceId() ? a : b;
+        InstanceDump second = first == a ? b : a;
 
-        return result;
+        BigInteger bigA = BigInteger.valueOf(first.getInstanceId());
+        BigInteger bigB = BigInteger.valueOf(second.getInstanceId());
+
+        return bigA.multiply(bigA).add(bigA).add(bigB);
     }
 }
