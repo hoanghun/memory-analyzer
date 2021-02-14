@@ -228,7 +228,8 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
                 Optional<InstanceFieldDump> any = value.getClassDump().getInstanceFields().stream().filter(field -> field.getName().equals(fieldName)).findAny();
                 any.ifPresent(instanceFieldDump -> {
                     if (instanceFieldDump.getType().equals(Object.class) && ((Value) fieldValue).value instanceof Long && instances.get(((Long) (((Value) fieldValue).value))) != null) {
-                        InstanceDump instanceDump = instances.get(((Long) (((Value) fieldValue).value)));
+                        Long instanceDumpKey = (Long) ((Value) fieldValue).value;
+                        InstanceDump instanceDump = instances.get(instanceDumpKey);
                         if (this.isString(instanceDump)) {
                             if (instanceDump.getInstanceFieldValues().isEmpty()) {
                                 queue.add(key);
@@ -279,7 +280,8 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 
         instanceDump.getInstanceFieldValues().forEach((field, value) -> {
             if (Objects.equals(field.getName(), "value")) {
-                RawPrimitiveArrayDump rawPrimitiveArrayDump = primitiveArrayDumpMap.get(((Value) value).value);
+                Long key = (Long) ((Value) value).value;
+                RawPrimitiveArrayDump rawPrimitiveArrayDump = primitiveArrayDumpMap.get(key);
                 if (rawPrimitiveArrayDump != null) {
                     if ("byte".equals(rawPrimitiveArrayDump.getItemType())) {
                         List<Object> values = rawPrimitiveArrayDump.getItems();
@@ -367,9 +369,7 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
      * @param rawMemoryDump Raw memory dump to use.
      */
     private void processClassFields(Map<Long, ClassDump> classes, RawMemoryDump rawMemoryDump) {
-        classes.forEach((key, value) -> {
-            rawMemoryDump.getRawClassDumps().get(key).getInstanceFields().forEach((name, strType) -> value.addInstanceField(name, getClass(strType)));
-        });
+        classes.forEach((key, value) -> rawMemoryDump.getRawClassDumps().get(key).getInstanceFields().forEach((name, strType) -> value.addInstanceField(name, getClass(strType))));
 
         classes.forEach((key, value) -> rawMemoryDump.getRawClassDumps().get(key).getStaticFields()
                 .forEach((name, val) -> value.addStaticField(name, getClass(((Value) val).type.toString()), ((Value) val).value))

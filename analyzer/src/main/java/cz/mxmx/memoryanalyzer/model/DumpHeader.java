@@ -2,8 +2,6 @@ package cz.mxmx.memoryanalyzer.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 /**

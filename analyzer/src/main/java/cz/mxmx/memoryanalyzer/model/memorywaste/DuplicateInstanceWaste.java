@@ -51,11 +51,6 @@ public class DuplicateInstanceWaste implements Waste {
 	}
 
 	@Override
-	public Long estimateWastedBytes() {
-		return null;
-	}
-
-	@Override
 	public String getTitle() {
 		return String.format(TITLE_TEMPLATE, this.getAffectedClass());
 	}

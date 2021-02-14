@@ -40,11 +40,6 @@ public class ReferencesWaste implements Waste {
     }
 
     @Override
-    public Long estimateWastedBytes() {
-        return null;
-    }
-
-    @Override
     public String getTitle() {
         return TITLE_TEMPLATE;
     }

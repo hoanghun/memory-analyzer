@@ -4,13 +4,13 @@ package cz.mxmx.memoryanalyzer.model.raw;
  * Raw "alloc site" data representation.
  */
 public class RawAllocSite {
-	private byte arrayIndicator;
-	private int classSerialNum;
-	private int stackTraceSerialNum;
-	private int liveBytes;
-	private int liveInstances;
-	private int bytesAllocated;
-	private int instancesAllocated;
+	private final byte arrayIndicator;
+	private final int classSerialNum;
+	private final int stackTraceSerialNum;
+	private final int liveBytes;
+	private final int liveInstances;
+	private final int bytesAllocated;
+	private final int instancesAllocated;
 
 	/**
 	 * Creates new alloc site data representation.

@@ -1,16 +1,18 @@
 package cz.mxmx.memoryanalyzer.memorywaste;
 
-import cz.mxmx.memoryanalyzer.model.*;
+import cz.mxmx.memoryanalyzer.model.InstanceArrayDump;
+import cz.mxmx.memoryanalyzer.model.InstanceDump;
+import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
+import cz.mxmx.memoryanalyzer.model.MemoryDump;
 import cz.mxmx.memoryanalyzer.model.memorywaste.ListOfDuplicatesWaste;
 import cz.mxmx.memoryanalyzer.model.memorywaste.Waste;
-import edu.tufts.eaftan.hprofparser.parser.datastructures.Value;
 
 import java.util.*;
 
 /**
  * Analyzer to find ineffective list usage.
  */
-public class ListOfDuplicatesAnalyzer implements WasteAnalyzer {
+public class ListOfDuplicatesAnalyzer extends ListAnalyzer implements WasteAnalyzer {
 
     @Override
     public List<Waste> findMemoryWaste(MemoryDump memoryDump) {
@@ -59,42 +61,5 @@ public class ListOfDuplicatesAnalyzer implements WasteAnalyzer {
         Set<Object> objects = new HashSet<>(instanceArrayDump.getValues());
         objects.remove(null);
         return objects.size();
-    }
-
-    /**
-     * Returns the elements of the given instance from the memory dump.
-     *
-     * @param memoryDump Memory dump to search in.
-     * @param value      Value to look for.
-     * @return Found values or null.
-     */
-    private InstanceArrayDump getElements(MemoryDump memoryDump, InstanceDump value) {
-        Map.Entry<InstanceFieldDump, Object> elementField = value.getInstanceFieldValues().entrySet().stream().filter((field) -> field.getKey().getName().equals("elementData")).findAny().orElse(null);
-
-        if (elementField != null) {
-            Long arrayId = (Long) ((Value) elementField.getValue()).value;
-            return memoryDump.getInstanceArrays().get(arrayId);
-        }
-
-        return null;
-    }
-
-    /**
-     * Checks whether the given instance is a list (instance of {@link AbstractList}).
-     *
-     * @param value Instance to check.
-     * @return True if the given instance is a list, otherwise false.
-     */
-    private boolean isList(InstanceDump value) {
-        ClassDump parent = value.getClassDump();
-        do {
-            if (parent.getName().equals(AbstractList.class.getName())) {
-                return true;
-            }
-
-            parent = parent.getSuperClassDump();
-        } while (parent != null && parent.getName() != null && !parent.getName().equals(Object.class.getName()));
-
-        return false;
     }
 }

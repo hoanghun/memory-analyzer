@@ -28,17 +28,17 @@ public class RawRecordHandler extends RecordHandler {
 	}};
 
 	private RawDumpHeader rawDumpHeader;
-	private Map<Long, String> stringMap = new HashMap<>();
-	private Map<Long, ClassInfo> classMap = new HashMap<>();
-	private Map<Long, RawLoadClassDump> rawLoadClassDumps = new HashMap<>();
-	private Map<Long, RawClassDump> rawClassDumps = new HashMap<>();
-	private Map<Long, RawInstanceDump> rawInstanceDumps = new HashMap<>();
-	private Map<Long, RawPrimitiveArrayDump> rawPrimitiveArrayDumps = new HashMap<>();
-	private Map<Long, RawObjectArrayDump> rawObjectArrayDumps = new HashMap<>();
-	private List<RawHeapSummary> rawHeapSummaries = new ArrayList<>();
-	private List<RawAllocSiteParent> rawAllocSiteParents = new ArrayList<>();
-	private List<RawStackTrace> rawStackTraces = new ArrayList<>();
-	private List<RawStackFrame> rawStackFrames = new ArrayList<>();
+	private final Map<Long, String> stringMap = new HashMap<>();
+	private final Map<Long, ClassInfo> classMap = new HashMap<>();
+	private final Map<Long, RawLoadClassDump> rawLoadClassDumps = new HashMap<>();
+	private final Map<Long, RawClassDump> rawClassDumps = new HashMap<>();
+	private final Map<Long, RawInstanceDump> rawInstanceDumps = new HashMap<>();
+	private final Map<Long, RawPrimitiveArrayDump> rawPrimitiveArrayDumps = new HashMap<>();
+	private final Map<Long, RawObjectArrayDump> rawObjectArrayDumps = new HashMap<>();
+	private final List<RawHeapSummary> rawHeapSummaries = new ArrayList<>();
+	private final List<RawAllocSiteParent> rawAllocSiteParents = new ArrayList<>();
+	private final List<RawStackTrace> rawStackTraces = new ArrayList<>();
+	private final List<RawStackFrame> rawStackFrames = new ArrayList<>();
 
 	/**
 	 * Translates the type into its string name.
@@ -46,7 +46,7 @@ public class RawRecordHandler extends RecordHandler {
 	 * @return String name.
 	 */
 	private static String getBasicType(byte type) {
-		return TYPE_TRANSLATION_MAP.get(new Byte(type).intValue());
+		return TYPE_TRANSLATION_MAP.get(Byte.valueOf(type).intValue());
 	}
 
 	@Override
@@ -166,12 +166,12 @@ public class RawRecordHandler extends RecordHandler {
 	}
 
 	@Override
-	public void objArrayDump(long objId, int stackTraceSerialNum, long elemClassObjId, long[] elems) {
+	public void objArrayDump(long objId, int stackTraceSerialNum, long elemClassObjId, long[] elements) {
 		RawObjectArrayDump arrayDummy = new RawObjectArrayDump(objId, elemClassObjId);
 		this.rawObjectArrayDumps.put(objId, arrayDummy);
 
-		for (long elem : elems) {
-			arrayDummy.addItem(elem);
+		for (long element : elements) {
+			arrayDummy.addItem(element);
 		}
 
 	}

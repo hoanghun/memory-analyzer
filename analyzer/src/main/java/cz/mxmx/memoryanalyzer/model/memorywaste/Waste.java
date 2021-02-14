@@ -9,11 +9,6 @@ import java.util.List;
  * Representation of memory waste.
  */
 public interface Waste extends Comparable<Waste> {
-	/**
-	 * Returns the estimated wasted bytes by the given waste instance.
-	 * @return Number of bytes.
-	 */
-	Long estimateWastedBytes();
 
 	/**
 	 * Returns the title of the waste.

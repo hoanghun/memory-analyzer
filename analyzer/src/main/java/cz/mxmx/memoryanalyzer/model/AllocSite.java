@@ -4,13 +4,13 @@ package cz.mxmx.memoryanalyzer.model;
  * Processed alloc site.
  */
 public class AllocSite {
-	private boolean isArray;
-	private int classSerialNum;
-	private int stackTraceSerialNum;
-	private int liveBytes;
-	private int liveInstances;
-	private int bytesAllocated;
-	private int instancesAllocated;
+	private final boolean isArray;
+	private final int classSerialNum;
+	private final int stackTraceSerialNum;
+	private final int liveBytes;
+	private final int liveInstances;
+	private final int bytesAllocated;
+	private final int instancesAllocated;
 
 	/**
 	 * Creates a processed alloc site.
