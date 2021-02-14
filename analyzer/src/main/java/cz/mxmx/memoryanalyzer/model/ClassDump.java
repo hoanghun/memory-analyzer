@@ -16,7 +16,7 @@ public class ClassDump {
 	private final List<InstanceDump> instances = new ArrayList<>();
 	private final List<FieldDump> constants = new ArrayList<>();
 	private final List<FieldDump> staticFields = new ArrayList<>();
-	private final List<InstanceFieldDump> instanceFields = new ArrayList<>();
+	private final List<InstanceFieldDump<?>> instanceFields = new ArrayList<>();
 	private final List<ClassDump> childrenClasses = new ArrayList<>();
 
 	/**
@@ -73,7 +73,7 @@ public class ClassDump {
 		return staticFields;
 	}
 
-	public List<InstanceFieldDump> getInstanceFields() {
+	public List<InstanceFieldDump<?>> getInstanceFields() {
 		return instanceFields;
 	}
 

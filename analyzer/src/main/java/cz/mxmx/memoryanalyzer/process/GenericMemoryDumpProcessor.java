@@ -52,7 +52,7 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
         DumpHeader dumpHeader = this.getDumpHeader(rawMemoryDump.getRawDumpHeader());
         Map<Long, ClassDump> classes = this.getClasses(rawMemoryDump);
         Map<Long, InstanceDump> instances = this.getInstances(rawMemoryDump, classes);
-        Map<Long, ArrayDump> primitiveArrays = this.getPrimitiveArrays(rawMemoryDump.getRawPrimitiveArrayDumps());
+        Map<Long, ArrayDump<?>> primitiveArrays = this.getPrimitiveArrays(rawMemoryDump.getRawPrimitiveArrayDumps());
         Map<Long, InstanceArrayDump> instanceArrays = this.getInstanceArrays(rawMemoryDump.getRawObjectArrayDumps(), instances, classes);
         List<AllocSiteParent> allocSites = this.getAllocSites(rawMemoryDump.getRawAllocSiteParents());
         List<StackTrace> stackTraces = this.getStackTraces(rawMemoryDump.getRawStackTraces(), rawMemoryDump.getRawStackFrames(), rawMemoryDump.getStringMap(), classes);
@@ -172,8 +172,8 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
      * @param rawPrimitiveArrayDumps Raw primitive arrays.
      * @return Processed primitive arrays.
      */
-    private Map<Long, ArrayDump> getPrimitiveArrays(Map<Long, RawPrimitiveArrayDump> rawPrimitiveArrayDumps) {
-        Map<Long, ArrayDump> arrays = new HashMap<>();
+    private Map<Long, ArrayDump<?>> getPrimitiveArrays(Map<Long, RawPrimitiveArrayDump> rawPrimitiveArrayDumps) {
+        Map<Long, ArrayDump<?>> arrays = new HashMap<>();
 
         rawPrimitiveArrayDumps.forEach((key, value) -> arrays.put(key, new ArrayDump<>(key, getClass(value.getItemClassObjectId()), value.getItems())));
 
@@ -222,10 +222,10 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
             RawInstanceDump rawInstanceDump = rawMemoryDump.getRawInstanceDumps().get(key);
             Map<String, Object> instanceValues = rawInstanceDump.getInstanceValues();
 
-            Map<InstanceFieldDump, Object> fieldsToAdd = new HashMap<>();
+            Map<InstanceFieldDump<?>, Object> fieldsToAdd = new HashMap<>();
 
             instanceValues.forEach((fieldName, fieldValue) -> {
-                Optional<InstanceFieldDump> any = value.getClassDump().getInstanceFields().stream().filter(field -> field.getName().equals(fieldName)).findAny();
+                Optional<InstanceFieldDump<?>> any = value.getClassDump().getInstanceFields().stream().filter(field -> field.getName().equals(fieldName)).findAny();
                 any.ifPresent(instanceFieldDump -> {
                     if (instanceFieldDump.getType().equals(Object.class) && ((Value<?>) fieldValue).value instanceof Long && instances.get(((Long) (((Value<?>) fieldValue).value))) != null) {
                         Long instanceDumpKey = (Long) ((Value<?>) fieldValue).value;

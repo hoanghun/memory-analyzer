@@ -37,7 +37,7 @@ public class ListOfDuplicatesWaste implements Waste {
 	/**
 	 * Field holding the list.
 	 */
-	private final InstanceFieldDump field;
+	private final InstanceFieldDump<?> field;
 
 	/**
 	 * Size of the list.
@@ -51,7 +51,7 @@ public class ListOfDuplicatesWaste implements Waste {
 	 * @param field Field holding the list.
 	 * @param size Size of the problematic list.
 	 */
-	public ListOfDuplicatesWaste(WasteAnalyzer sourceWasteAnalyzer, InstanceDump instance, InstanceFieldDump field, long size) {
+	public ListOfDuplicatesWaste(WasteAnalyzer sourceWasteAnalyzer, InstanceDump instance, InstanceFieldDump<?> field, long size) {
 		this.sourceWasteAnalyzer = sourceWasteAnalyzer;
 		this.instance = instance;
 		this.field = field;

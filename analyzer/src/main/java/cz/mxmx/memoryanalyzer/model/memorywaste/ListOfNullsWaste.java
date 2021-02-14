@@ -50,7 +50,7 @@ public class ListOfNullsWaste implements Waste {
 	/**
 	 * Source field.
 	 */
-	private final InstanceFieldDump sourceField;
+	private final InstanceFieldDump<?> sourceField;
 
 	/**
 	 * Creates the list of nulls waste type.
@@ -61,7 +61,7 @@ public class ListOfNullsWaste implements Waste {
 	 * @param sourceInstance Source instance.
 	 * @param sourceField Source field.
 	 */
-	public ListOfNullsWaste(WasteAnalyzer sourceWasteAnalyzer, InstanceDump instance, List<?> list, long nullCount, InstanceDump sourceInstance, InstanceFieldDump sourceField) {
+	public ListOfNullsWaste(WasteAnalyzer sourceWasteAnalyzer, InstanceDump instance, List<?> list, long nullCount, InstanceDump sourceInstance, InstanceFieldDump<?> sourceField) {
 		this.sourceWasteAnalyzer = sourceWasteAnalyzer;
 		this.instance = instance;
 		this.list = list;

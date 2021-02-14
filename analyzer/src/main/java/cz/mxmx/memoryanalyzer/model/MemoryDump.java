@@ -49,7 +49,7 @@ public interface MemoryDump {
 	 * List of primitive type arrays.
 	 * @return List of the arrays and their ID as a key.
 	 */
-	Map<Long, ArrayDump> getPrimitiveArrays();
+	Map<Long, ArrayDump<?>> getPrimitiveArrays();
 
 	/**
 	 * List of instance type arrays.
@@ -81,7 +81,7 @@ public interface MemoryDump {
 
 	MemoryDump setUserClasses(Map<Long, ClassDump> userClasses);
 
-	MemoryDump setPrimitiveArrays(Map<Long, ArrayDump> primitiveArrays);
+	MemoryDump setPrimitiveArrays(Map<Long, ArrayDump<?>> primitiveArrays);
 
 	MemoryDump setInstanceArrays(Map<Long, InstanceArrayDump> instanceArrays);
 

@@ -17,7 +17,7 @@ public class DeepEqualsTest {
         ClassDump classDump = new ClassDump(0L, "cz.fav.zcu.Class", 1, null);
         classDump.addInstanceField("ref", GenericMemoryDumpProcessor.getClass("int"));
 
-        InstanceFieldDump instanceFieldDump = classDump.getInstanceFields().get(0);
+        InstanceFieldDump<?> instanceFieldDump = classDump.getInstanceFields().get(0);
         InstanceDump first = new InstanceDump(id++, classDump);
         first.addInstanceField(instanceFieldDump, new Value<>(Type.INT, 3));
 
@@ -34,7 +34,7 @@ public class DeepEqualsTest {
         ClassDump childClassDump = new ClassDump(0L, "cz.fav.zcu.Child", 1, null);
 
         childClassDump.addInstanceField("ref", GenericMemoryDumpProcessor.getClass("int"));
-        InstanceFieldDump instanceFieldDump = childClassDump.getInstanceFields().get(0);
+        InstanceFieldDump<?> instanceFieldDump = childClassDump.getInstanceFields().get(0);
         InstanceDump firstChild = new InstanceDump(id++, childClassDump);
         firstChild.addInstanceField(instanceFieldDump, new Value<>(Type.INT, 3));
 
@@ -62,7 +62,7 @@ public class DeepEqualsTest {
         ClassDump childClassDump = new ClassDump(classId++, "cz.fav.zcu.Child", 1, null);
 
         childClassDump.addInstanceField("ref", GenericMemoryDumpProcessor.getClass("int"));
-        InstanceFieldDump instanceFieldDump = childClassDump.getInstanceFields().get(0);
+        InstanceFieldDump<?> instanceFieldDump = childClassDump.getInstanceFields().get(0);
         InstanceDump firstChild = new InstanceDump(id++, childClassDump);
         firstChild.addInstanceField(instanceFieldDump, new Value<>(Type.INT, 3));
 
@@ -95,7 +95,7 @@ public class DeepEqualsTest {
 
         ClassDump parentClassDump = new ClassDump(classId, "cz.fav.zcu.Parent", 1, null);
         parentClassDump.addInstanceField("ref", GenericMemoryDumpProcessor.getClass("object"));
-        InstanceFieldDump instanceFieldDump = parentClassDump.getInstanceFields().get(0);
+        InstanceFieldDump<?> instanceFieldDump = parentClassDump.getInstanceFields().get(0);
 
         InstanceDump firstParent = new InstanceDump(id++, parentClassDump);
         firstParent.addInstanceField(instanceFieldDump, firstChild);
@@ -103,7 +103,7 @@ public class DeepEqualsTest {
         InstanceDump secondParent = new InstanceDump(id, parentClassDump);
         secondParent.addInstanceField(instanceFieldDump, secondChild);
 
-        InstanceFieldDump instanceFieldDumpForChild = childClassDump.getInstanceFields().get(0);
+        InstanceFieldDump<?> instanceFieldDumpForChild = childClassDump.getInstanceFields().get(0);
         firstChild.addInstanceField(instanceFieldDumpForChild, firstParent);
         secondChild.addInstanceField(instanceFieldDumpForChild, secondParent);
 
@@ -120,7 +120,7 @@ public class DeepEqualsTest {
         childClassDump.addInstanceField("ref", GenericMemoryDumpProcessor.getClass("object"));
         childClassDump.addInstanceField("intos", GenericMemoryDumpProcessor.getClass("int"));
 
-        InstanceFieldDump instanceFieldDump = childClassDump.getInstanceFields().get(1);
+        InstanceFieldDump<?> instanceFieldDump = childClassDump.getInstanceFields().get(1);
         InstanceDump firstChild = new InstanceDump(id++, childClassDump);
         InstanceDump secondChild = new InstanceDump(id++, childClassDump);
 
@@ -137,7 +137,7 @@ public class DeepEqualsTest {
         InstanceDump secondParent = new InstanceDump(id, parentClassDump);
         secondParent.addInstanceField(instanceFieldDump, secondChild);
 
-        InstanceFieldDump instanceFieldDumpForChild = childClassDump.getInstanceFields().get(0);
+        InstanceFieldDump<?> instanceFieldDumpForChild = childClassDump.getInstanceFields().get(0);
         firstChild.addInstanceField(instanceFieldDumpForChild, firstParent);
         secondChild.addInstanceField(instanceFieldDumpForChild, secondParent);
 

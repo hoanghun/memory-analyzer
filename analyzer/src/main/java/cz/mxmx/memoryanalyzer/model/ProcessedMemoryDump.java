@@ -15,7 +15,7 @@ public class ProcessedMemoryDump implements MemoryDump {
 	private Map<Long, ClassDump> classes;
 	private Map<Long, InstanceDump> userInstances;
 	private Map<Long, ClassDump> userClasses;
-	private Map<Long, ArrayDump> primitiveArrays;
+	private Map<Long, ArrayDump<?>> primitiveArrays;
 	private Map<Long, InstanceArrayDump> instanceArrays;
 	private List<AllocSiteParent> allocSites;
 	private List<StackTrace> stackTraces;
@@ -50,7 +50,7 @@ public class ProcessedMemoryDump implements MemoryDump {
 		return userClasses;
 	}
 
-	public Map<Long, ArrayDump> getPrimitiveArrays() {
+	public Map<Long, ArrayDump<?>> getPrimitiveArrays() {
 		return primitiveArrays;
 	}
 
@@ -105,7 +105,7 @@ public class ProcessedMemoryDump implements MemoryDump {
 	}
 
 	@Override
-	public ProcessedMemoryDump setPrimitiveArrays(Map<Long, ArrayDump> primitiveArrays) {
+	public ProcessedMemoryDump setPrimitiveArrays(Map<Long, ArrayDump<?>> primitiveArrays) {
 		this.primitiveArrays = primitiveArrays;
 		return this;
 	}

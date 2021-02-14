@@ -36,8 +36,8 @@ public class InstanceFieldDump<T> {
 		return values;
 	}
 
-	public void addValue(T value) {
-		this.values.add(value);
+	public void addValue(Object value) {
+	    values.add((T) value);
 	}
 
 	@Override
