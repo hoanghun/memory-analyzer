@@ -2,9 +2,6 @@ package cz.mxmx.memoryanalyzer.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Instance field.
  * @param <T> Type of the field.
@@ -12,7 +9,6 @@ import java.util.List;
 public class InstanceFieldDump<T> {
 	private final String name;
 	private final Class<T> type;
-	private final List<T> values = new ArrayList<>();
 
 	/**
 	 * Creates an instance field.
@@ -32,20 +28,11 @@ public class InstanceFieldDump<T> {
 		return type;
 	}
 
-	public List<T> getValues() {
-		return values;
-	}
-
-	public void addValue(Object value) {
-	    values.add((T) value);
-	}
-
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this)
 				.append("name", name)
 				.append("type", type)
-				.append("values", values)
 				.toString();
 	}
 }

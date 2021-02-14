@@ -251,10 +251,7 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
                 continue;
             }
 
-            fieldsToAdd.forEach((instanceFieldDump, val) -> {
-                value.addInstanceField(instanceFieldDump, val);
-                instanceFieldDump.addValue(val);
-            });
+            fieldsToAdd.forEach(value::addInstanceField);
         }
     }
 
