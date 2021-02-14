@@ -16,12 +16,12 @@ public abstract class ListAnalyzer {
      * @return Found values or null.
      */
     protected InstanceArrayDump getElements(MemoryDump memoryDump, InstanceDump value) {
-        Map.Entry<InstanceFieldDump, Object> elementField = value.getInstanceFieldValues().entrySet().stream()
+        Map.Entry<InstanceFieldDump<?>, Object> elementField = value.getInstanceFieldValues().entrySet().stream()
                 .filter((field) -> field.getKey().getName().equals("elementData"))
                 .findAny().orElse(null);
 
         if (elementField != null) {
-            Long arrayId = (Long) ((Value) elementField.getValue()).value;
+            Long arrayId = (Long) ((Value<?>) elementField.getValue()).value;
             return memoryDump.getInstanceArrays().get(arrayId);
         }
 

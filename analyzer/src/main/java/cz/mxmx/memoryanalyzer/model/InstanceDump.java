@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class InstanceDump extends GenericDump {
 	private final ClassDump classDump;
-	private final Map<InstanceFieldDump, Object> instanceFieldValues = new HashMap<>();
+	private final Map<InstanceFieldDump<?>, Object> instanceFieldValues = new HashMap<>();
 
 	/**
 	 * Creates an instance dump.
@@ -24,11 +24,11 @@ public class InstanceDump extends GenericDump {
 		return classDump;
 	}
 
-	public Map<InstanceFieldDump, Object> getInstanceFieldValues() {
+	public Map<InstanceFieldDump<?>, Object> getInstanceFieldValues() {
 		return instanceFieldValues;
 	}
 
-	public void addInstanceField(InstanceFieldDump instanceFieldDump, Object value) {
+	public void addInstanceField(InstanceFieldDump<?> instanceFieldDump, Object value) {
 		this.instanceFieldValues.put(instanceFieldDump, value);
 	}
 

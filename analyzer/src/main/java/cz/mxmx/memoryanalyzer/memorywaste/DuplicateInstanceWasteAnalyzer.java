@@ -74,32 +74,6 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
     public boolean instancesAreSame(InstanceDump instance, InstanceDump instance2) {
         currentlyComparing.clear();
         return deepEquals(instance, instance2, currentlyComparing);
-//        return shallowEquals(instance, instance2);
-    }
-
-    /**
-     * @param a instance dump a
-     * @param b instance dumb b
-     * @return true if objects have same references or string values.
-     * @deprecated Deprecated version to compare objects. Can compare only references as long values and Strings.
-     */
-    private boolean shallowEquals(InstanceDump a, InstanceDump b) {
-        if (!this.instancesOfSameClass(a, b)
-                || a.getInstanceFieldValues().size() != b.getInstanceFieldValues().size()) {
-            return false;
-        }
-
-        ClassDump classDump = a.getClassDump();
-
-        for (InstanceFieldDump field : classDump.getInstanceFields()) {
-            Object value = a.getInstanceFieldValues().get(field);
-            Object value2 = b.getInstanceFieldValues().get(field);
-
-            if (!value.equals(value2)) {
-                return false;
-            }
-        }
-        return classDump.getInstanceFields().size() > 0;
     }
 
     private boolean deepEquals(InstanceDump a, InstanceDump b, Map<Long, Set<Long>> currentlyComparing) {
@@ -107,8 +81,7 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
             return true;
         }
 
-        if (!this.instancesOfSameClass(a, b)
-                || a.getInstanceFieldValues().size() != b.getInstanceFieldValues().size()) {
+        if (a.getInstanceFieldValues().size() != b.getInstanceFieldValues().size() || !this.instancesOfSameClass(a, b)) {
             return false;
         }
 
@@ -127,7 +100,7 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         ClassDump classDump = a.getClassDump();
 
         boolean instanceComparisonResult = true;
-        for (InstanceFieldDump field : classDump.getInstanceFields()) {
+        for (InstanceFieldDump<?> field : classDump.getInstanceFields()) {
             Object value = a.getInstanceFieldValues().get(field);
             Object value2 = b.getInstanceFieldValues().get(field);
 

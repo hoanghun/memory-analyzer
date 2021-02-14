@@ -177,11 +177,11 @@ public class RawRecordHandler extends RecordHandler {
 	}
 
 	@Override
-	public void primArrayDump(long objId, int stackTraceSerialNum, byte elemType, Value<?>[] elems) {
+	public void primArrayDump(long objId, int stackTraceSerialNum, byte elemType, Value<?>[] elements) {
 		RawPrimitiveArrayDump arrayDummy = new RawPrimitiveArrayDump(objId, getBasicType(elemType));
 		this.rawPrimitiveArrayDumps.put(objId, arrayDummy);
 
-		for (Value<?> elem : elems) {
+		for (Value<?> elem : elements) {
 			arrayDummy.addItem(elem);
 		}
 

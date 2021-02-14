@@ -38,7 +38,7 @@ public class ListOfDuplicatesAnalyzer extends ListAnalyzer implements WasteAnaly
      * @param value      List instance itself.
      * @param wasteList  List with results.
      */
-    private void findWastedList(MemoryDump memoryDump, InstanceFieldDump field, InstanceDump value, List<Waste> wasteList) {
+    private void findWastedList(MemoryDump memoryDump, InstanceFieldDump<?> field, InstanceDump value, List<Waste> wasteList) {
         InstanceArrayDump elements = this.getElements(memoryDump, value);
 
         if (elements != null && elements.getValues() != null) {

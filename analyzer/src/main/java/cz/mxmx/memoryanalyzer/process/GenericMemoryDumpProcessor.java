@@ -227,8 +227,8 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
             instanceValues.forEach((fieldName, fieldValue) -> {
                 Optional<InstanceFieldDump> any = value.getClassDump().getInstanceFields().stream().filter(field -> field.getName().equals(fieldName)).findAny();
                 any.ifPresent(instanceFieldDump -> {
-                    if (instanceFieldDump.getType().equals(Object.class) && ((Value) fieldValue).value instanceof Long && instances.get(((Long) (((Value) fieldValue).value))) != null) {
-                        Long instanceDumpKey = (Long) ((Value) fieldValue).value;
+                    if (instanceFieldDump.getType().equals(Object.class) && ((Value<?>) fieldValue).value instanceof Long && instances.get(((Long) (((Value<?>) fieldValue).value))) != null) {
+                        Long instanceDumpKey = (Long) ((Value<?>) fieldValue).value;
                         InstanceDump instanceDump = instances.get(instanceDumpKey);
                         if (this.isString(instanceDump)) {
                             if (instanceDump.getInstanceFieldValues().isEmpty()) {
@@ -280,7 +280,7 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 
         instanceDump.getInstanceFieldValues().forEach((field, value) -> {
             if (Objects.equals(field.getName(), "value")) {
-                Long key = (Long) ((Value) value).value;
+                Long key = (Long) ((Value<?>) value).value;
                 RawPrimitiveArrayDump rawPrimitiveArrayDump = primitiveArrayDumpMap.get(key);
                 if (rawPrimitiveArrayDump != null) {
                     if ("byte".equals(rawPrimitiveArrayDump.getItemType())) {
@@ -288,7 +288,7 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
                         byte[] bytes = new byte[values.size()];
                         for (int i = 0; i < values.size(); i++) {
                             if (values.get(i) instanceof Value) {
-                                bytes[i] = (byte) ((Value) values.get(i)).value;
+                                bytes[i] = (byte) ((Value<?>) values.get(i)).value;
                             }
                         }
                         ret[0] = new String(bytes);
@@ -372,11 +372,11 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
         classes.forEach((key, value) -> rawMemoryDump.getRawClassDumps().get(key).getInstanceFields().forEach((name, strType) -> value.addInstanceField(name, getClass(strType))));
 
         classes.forEach((key, value) -> rawMemoryDump.getRawClassDumps().get(key).getStaticFields()
-                .forEach((name, val) -> value.addStaticField(name, getClass(((Value) val).type.toString()), ((Value) val).value))
+                .forEach((name, val) -> value.addStaticField(name, getClass(((Value<?>) val).type.toString()), ((Value<?>) val).value))
         );
 
         classes.forEach((key, value) -> rawMemoryDump.getRawClassDumps().get(key).getStaticFields()
-                .forEach((name, val) -> value.addStaticField(name, getClass(((Value) val).type.toString()), ((Value) val).value))
+                .forEach((name, val) -> value.addStaticField(name, getClass(((Value<?>) val).type.toString()), ((Value<?>) val).value))
         );
     }
 

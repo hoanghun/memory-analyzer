@@ -45,7 +45,7 @@ public class ListWasteAnalyzer extends ListAnalyzer implements WasteAnalyzer {
      * @param instance          Instance with the field.
      * @param instanceFieldDump Field where the list is stored in.
      */
-    private void findWastedList(MemoryDump memoryDump, InstanceDump value, List<Waste> wasteList, InstanceDump instance, InstanceFieldDump instanceFieldDump) {
+    private void findWastedList(MemoryDump memoryDump, InstanceDump value, List<Waste> wasteList, InstanceDump instance, InstanceFieldDump<?> instanceFieldDump) {
         InstanceArrayDump elements = this.getElements(memoryDump, value);
 
         if (elements != null && elements.getValues() != null) {
