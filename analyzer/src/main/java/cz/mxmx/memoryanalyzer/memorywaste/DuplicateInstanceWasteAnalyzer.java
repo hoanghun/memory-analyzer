@@ -99,35 +99,32 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 
         ClassDump classDump = a.getClassDump();
 
-        boolean instanceComparisonResult = true;
+        boolean instancesSame = true;
         for (InstanceFieldDump<?> field : classDump.getInstanceFields()) {
             Object value = a.getInstanceFieldValues().get(field);
             Object value2 = b.getInstanceFieldValues().get(field);
 
             if (value instanceof InstanceDump && value2 instanceof InstanceDump) {
-                if (!deepEquals((InstanceDump) value, (InstanceDump) value2, currentlyComparing)) {
-                    instanceComparisonResult = false;
-                    break;
-                }
+                instancesSame = deepEquals((InstanceDump) value, (InstanceDump) value2, currentlyComparing);
             } else if (value instanceof Value && value2 instanceof Value) {
-                if (!Objects.equals(((Value<?>) value).value, ((Value<?>) value2).value)) {
-                    instanceComparisonResult = false;
-                    break;
-                }
-            } else if (!value.equals(value2)) {
-                instanceComparisonResult = false;
+                instancesSame = Objects.equals(((Value<?>) value).value, ((Value<?>) value2).value);
+            } else {
+                instancesSame = value.equals(value2);
+            }
+
+            if (!instancesSame) {
                 break;
             }
         }
 
-        instanceComparisonResult = instanceComparisonResult && classDump.getInstanceFields().size() > 0;
+        instancesSame = instancesSame && classDump.getInstanceFields().size() > 0;
         if (this.cacheResult) {
-            cacheResult(a, b, instanceComparisonResult);
+            cacheResult(a, b, instancesSame);
         } else {
             this.cacheResult = true;
         }
 
-        return instanceComparisonResult;
+        return instancesSame;
     }
 
     private void cacheResult(InstanceDump a, InstanceDump b, boolean result) {
