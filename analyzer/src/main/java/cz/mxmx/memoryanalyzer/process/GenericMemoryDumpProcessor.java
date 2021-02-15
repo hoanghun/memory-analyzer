@@ -40,7 +40,8 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
      * @return Translated type or null.
      */
     public static Class<?> getClass(String classType) {
-        return TYPE_TRANSLATION_MAP.get(classType.toLowerCase());
+        String key = classType == null ? null : classType.toLowerCase();
+        return TYPE_TRANSLATION_MAP.get(key);
     }
 
     @Override
@@ -285,7 +286,7 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
                         byte[] bytes = new byte[values.size()];
                         for (int i = 0; i < values.size(); i++) {
                             if (values.get(i) instanceof Value<?>) {
-                                bytes[i]= (Byte) ((Value<?>) values.get(i)).value;
+                                bytes[i] = (Byte) ((Value<?>) values.get(i)).value;
                             }
                         }
                         ret[0] = new String(bytes);
@@ -366,15 +367,30 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
      * @param rawMemoryDump Raw memory dump to use.
      */
     private void processClassFields(Map<Long, ClassDump> classes, RawMemoryDump rawMemoryDump) {
-        classes.forEach((key, value) -> rawMemoryDump.getRawClassDumps().get(key).getInstanceFields().forEach((name, strType) -> value.addInstanceField(name, getClass(strType))));
+        classes.forEach((key, value) -> {
+                    RawClassDump rawClassDump = rawMemoryDump.getRawClassDumps().get(key);
+                    rawClassDump.getInstanceFields().forEach((name, strType) -> value.addInstanceField(name, getClass(strType)));
+                    value.getInstanceFields().sort(fieldsComparator());
+                }
 
-        classes.forEach((key, value) -> rawMemoryDump.getRawClassDumps().get(key).getStaticFields()
-                .forEach((name, val) -> value.addStaticField(name, getClass(((Value<?>) val).type.toString()), ((Value<?>) val).value))
         );
 
         classes.forEach((key, value) -> rawMemoryDump.getRawClassDumps().get(key).getStaticFields()
                 .forEach((name, val) -> value.addStaticField(name, getClass(((Value<?>) val).type.toString()), ((Value<?>) val).value))
         );
+
+        classes.forEach((key, value) -> rawMemoryDump.getRawClassDumps().get(key).getStaticFields()
+                .forEach((name, val) -> value.addStaticField(name, getClass(((Value<?>) val).type.toString()), ((Value<?>) val).value))
+        );
+    }
+
+    public static Comparator<InstanceFieldDump<?>> fieldsComparator() {
+        return (o1, o2) -> {
+            if (o1.getType().equals(o2.getType())) return 0;
+            if (o1.getType().equals(TYPE_TRANSLATION_MAP.get("object"))) return 1;
+            if (o2.getType().equals(TYPE_TRANSLATION_MAP.get("object"))) return -1;
+            return 0;
+        };
     }
 
     /**
