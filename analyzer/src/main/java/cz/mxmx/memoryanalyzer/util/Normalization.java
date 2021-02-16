@@ -1,8 +1,8 @@
 package cz.mxmx.memoryanalyzer.util;
 
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -16,7 +16,7 @@ public class Normalization {
      * @param namespaces Namespaces.
      * @return Namespace regexes.
      */
-    public static Collection<String> stringToRegexNamespaces(Collection<String> namespaces) {
+    public static List<String> stringToRegexNamespaces(List<String> namespaces) {
         return namespaces.stream()
                 .map(namespace -> namespace.isEmpty() ? "" : namespace
                         .replace(".", "\\.")

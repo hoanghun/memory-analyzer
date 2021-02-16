@@ -117,25 +117,31 @@ public class DefaultMemoryDumpAnalyzer implements MemoryDumpAnalyzer {
                 .collect(Collectors.toSet());
     }
 
+
+    @Override
+    public MemoryDump analyze() throws FileNotFoundException, MemoryDumpAnalysisException {
+        MemoryDumpProcessor processor = new GenericMemoryDumpProcessor();
+        return analyzeMemoryDump(processor);
+    }
+
     @Override
     public MemoryDump analyze(List<String> namespaces) throws FileNotFoundException, MemoryDumpAnalysisException {
-        this.runAnalysis();
-
-        log.info("Processing loaded raw dump.");
         MemoryDumpProcessor processor = new FilteredMemoryDumpProcessor(this.genericProcessor, Normalization.stringToRegexNamespaces(namespaces), false);
-        MemoryDump process = processor.process(this.memoryDump);
-        log.info("Finished processing loaded raw dump.");
-        return process;
+        return analyzeMemoryDump(processor);
     }
 
     @Override
     public MemoryDump excludeAndAnalyze(List<String> namespaces) throws FileNotFoundException, MemoryDumpAnalysisException {
+        MemoryDumpProcessor processor = new FilteredMemoryDumpProcessor(this.genericProcessor, Normalization.stringToRegexNamespaces(namespaces), true);
+        return analyzeMemoryDump(processor);
+    }
+
+    private MemoryDump analyzeMemoryDump(MemoryDumpProcessor processor) throws FileNotFoundException, MemoryDumpAnalysisException {
         this.runAnalysis();
 
-        log.info("Processing loaded raw dump.");
-        MemoryDumpProcessor processor = new FilteredMemoryDumpProcessor(this.genericProcessor, Normalization.stringToRegexNamespaces(namespaces), true);
+        log.info("Processing raw dump.");
         MemoryDump process = processor.process(this.memoryDump);
-        log.info("Finished processing loaded raw dump.");
+        log.info("Finished processing raw dump.");
         return process;
     }
 }

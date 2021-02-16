@@ -22,6 +22,15 @@ public interface MemoryDumpAnalyzer {
     Set<String> getNamespaces() throws FileNotFoundException, MemoryDumpAnalysisException;
 
     /**
+     * Get a processed dump of all instances.
+     *
+     * @return Processed dump.
+     * @throws FileNotFoundException       Dump not found.
+     * @throws MemoryDumpAnalysisException An exception during processing.
+     */
+    MemoryDump analyze() throws FileNotFoundException, MemoryDumpAnalysisException;
+
+    /**
      * Get a processed dump of the given namespaces.
      *
      * @param namespaces Namespaces to use as a filter.
