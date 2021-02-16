@@ -56,6 +56,10 @@ public class App {
 		excludeOption.setRequired(false);
 		options.addOption(excludeOption);
 
+		Option interactiveOption = new Option("i", "interactive", false, "Interactive shell.");
+		interactiveOption.setRequired(false);
+		options.addOption(interactiveOption);
+
 		CommandLineParser parser = new DefaultParser();
 		HelpFormatter formatter = new HelpFormatter();
 		CommandLine cmd;
@@ -69,16 +73,20 @@ public class App {
 			boolean help = cmd.hasOption("help");
 			boolean fields = cmd.hasOption("fields");
 			boolean csv = cmd.hasOption("csv");
+			boolean interactive = cmd.hasOption("interactive");
 
 			List<ResultWriter> resultWriters = new ArrayList<>();
-			if(csv) {
+			if (csv) {
 				resultWriters.add(new CsvResultWriter("result.csv", namespace));
 			}
 
-			if (list && !Strings.isNullOrEmpty(inputFilePath)) {
+			DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
+			if (interactive) {
+				MemoryDump memoryDump = analyzer.analyze();
+
+			} else if (list && !Strings.isNullOrEmpty(inputFilePath)) {
 				Runnable measure = this.measure();
 
-				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 				log.info("Loading namespaces from {}...\n\n", inputFilePath);
 				Set<String> namespaces = new TreeSet<>(this.getNamespaces(analyzer));
 
@@ -89,7 +97,6 @@ public class App {
 			} else if (!Strings.isNullOrEmpty(namespace) && !Strings.isNullOrEmpty(inputFilePath)) {
 				resultWriters.add(new ConsoleResultWriter(namespace));
 				Runnable measure = this.measure();
-				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 
 				log.info("Analyzing classes from namespace `{}` in `{}`...\n\n", namespace, inputFilePath);
 				MemoryDump memoryDump = this.getMemoryDump(analyzer, namespace);
@@ -100,7 +107,6 @@ public class App {
 			} else if (excludeNamespace != null && !Strings.isNullOrEmpty(inputFilePath)) {
 				resultWriters.add(new ConsoleResultWriter(excludeNamespace));
 				Runnable measure = this.measure();
-				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 
 				log.info("Analyzing classes from excluding namespace `{}` in `{}`...\n\n", excludeNamespace, inputFilePath);
 				MemoryDump memoryDump = this.getMemoryDumpExcludingNamespace(analyzer, excludeNamespace);
