@@ -4,6 +4,7 @@ import com.beust.jcommander.internal.Lists;
 import com.google.common.base.Strings;
 import cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer;
 import cz.mxmx.memoryanalyzer.MemoryDumpAnalyzer;
+import cz.mxmx.memoryanalyzer.app.shell.Shell;
 import cz.mxmx.memoryanalyzer.exception.MemoryDumpAnalysisException;
 import cz.mxmx.memoryanalyzer.memorywaste.ReferenceAndDuplicateWasteAnalyzerPipeline;
 import cz.mxmx.memoryanalyzer.memorywaste.WasteAnalyzerPipeline;
@@ -88,6 +89,8 @@ public class App {
 			DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 			if (interactive) {
 				MemoryDump memoryDump = analyzer.analyze();
+				Shell shell = new Shell(memoryDump);
+				shell.run();
 
 			} else if (list && !Strings.isNullOrEmpty(inputFilePath)) {
 				Runnable measure = this.measure();
