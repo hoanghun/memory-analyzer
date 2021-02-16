@@ -176,6 +176,34 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         return false;
     }
 
+    /**
+     * @param a instance dump a
+     * @param b instance dumb b
+     * @return true if objects have same references or string values.
+     * @deprecated Deprecated version to compare objects. Can compare only references as long values and Strings.
+     */
+    private boolean shallowEquals(InstanceDump a, InstanceDump b) {
+        if (a.getInstanceFieldValues().size() != b.getInstanceFieldValues().size()) {
+            return false;
+        }
+
+        if (this.instancesOfSameClass(a, b)) {
+            ClassDump classDump = a.getClassDump();
+
+            for (InstanceFieldDump<?> field : classDump.getInstanceFields()) {
+                Object value = a.getInstanceFieldValues().get(field);
+                Object value2 = b.getInstanceFieldValues().get(field);
+
+                if (!value.equals(value2)) {
+                    return false;
+                }
+            }
+            return classDump.getInstanceFields().size() > 0;
+        }
+
+        return false;
+    }
+
     private static class InstancesIds {
         Long idFirst;
         Long idSecond;
