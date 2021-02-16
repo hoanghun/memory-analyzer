@@ -1,6 +1,5 @@
 package cz.mxmx.memoryanalyzer.memorywaste;
 
-import com.google.common.collect.Lists;
 import cz.mxmx.memoryanalyzer.cache.DefaultInstanceCacheWithStatistics;
 import cz.mxmx.memoryanalyzer.cache.DummyInstanceComparisonCache;
 import cz.mxmx.memoryanalyzer.cache.InstanceComparisonCache;
@@ -40,24 +39,34 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         List<Waste> wasteList = new ArrayList<>();
 
         List<InstanceDump> instances = new ArrayList<>(memoryDump.getUserInstances().values());
-        int onePercent = instances.size() / 100;
+        int total = instances.size();
+        int onePercent = total / 100;
         log.info("Starting duplicate instance waste analyzer. Using deep equals.");
+        long doneCount = 0;
+        List<InstanceDump> duplicates = new ArrayList<>();
 
-        for (int i = 0; i < instances.size() - 1; i++) {
-            InstanceDump instance = instances.get(i);
-            if (i % onePercent == 0) {
-                log.info("Done {}%.", (i / ((double) instances.size() - 2)) * 100);
-            }
-            for (int j = i + 1; j < instances.size(); j++) {
-                InstanceDump instanceToCompareWith = instances.get(j);
+        while (instances.size() > 0) {
+            duplicates.clear();
+            InstanceDump instance = instances.remove(instances.size() - 1);
 
-                if (this.instancesAreSame(instance, instanceToCompareWith)) {
-                    this.mergeWasteList(wasteList, instance, instanceToCompareWith);
+            for (InstanceDump compareWith : instances) {
+                if (this.instancesAreSame(instance, compareWith)) {
+                    duplicates.add(compareWith);
                 }
             }
-        }
+            doneCount++;
 
-        log.info("Finished duplicate instance waste analyses.");
+            if (duplicates.size() > 0) {
+                doneCount += duplicates.size();
+                duplicates.add(instance);
+                instances.removeAll(duplicates);
+                wasteList.add(new DuplicateInstanceWaste(this, new ArrayList<>(duplicates)));
+            }
+
+            if (doneCount % onePercent == 0) {
+                log.info("Done {}%.", (doneCount / ((double) total - 2)) * 100);
+            }
+        }
 
         log.info("Cache statistics - hit: {}, miss: {}.", cache.getCacheHitCount(), cache.getCacheMissCount());
 
@@ -164,30 +173,5 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         } while (parent != null && parent.getName() != null && !parent.getName().equals(Object.class.getName()));
 
         return false;
-    }
-
-    /**
-     * Merges the results into the given list, if similar exist, otherwise creates a new entry.
-     *
-     * @param wasteList List with current results
-     * @param instance  New instance 1
-     * @param instance2 New instance 2
-     */
-    private void mergeWasteList(List<Waste> wasteList, InstanceDump instance, InstanceDump instance2) {
-        Optional<Waste> optWaste = wasteList
-                .stream()
-                .filter(waste -> this.instancesAreSame(waste.getAffectedInstances().get(0), instance)).findFirst();
-
-        if (optWaste.isPresent()) {
-            if (!optWaste.get().getAffectedInstances().contains(instance)) {
-                optWaste.get().addAffectedInstance(instance);
-            }
-
-            if (!optWaste.get().getAffectedInstances().contains(instance2)) {
-                optWaste.get().addAffectedInstance(instance2);
-            }
-        } else {
-            wasteList.add(new DuplicateInstanceWaste(this, Lists.newArrayList(instance, instance2)));
-        }
     }
 }
