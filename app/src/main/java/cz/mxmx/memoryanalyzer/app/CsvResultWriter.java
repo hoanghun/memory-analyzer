@@ -7,14 +7,9 @@ import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
 import cz.mxmx.memoryanalyzer.model.memorywaste.Waste;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -72,7 +67,7 @@ public class CsvResultWriter implements ResultWriter {
 	}
 
 	@Override
-	public void write(List<Waste> wasteList, WasteAnalyzerPipeline wasteAnalyzer, boolean printFields) {
+	public void write(List<Waste> wasteList, WasteAnalyzerPipeline wasteAnalyzer, boolean printFields, boolean verbose) {
 		this.sb.append("Type,Count,Aggregation");
 		if(printFields) {
 			this.sb.append(",Fields");
@@ -143,7 +138,7 @@ public class CsvResultWriter implements ResultWriter {
 		List<String> fields = new ArrayList<>();
 
 		if (first.isPresent()) {
-			for (InstanceFieldDump instanceField : first.get().getClassDump().getInstanceFields()) {
+			for (InstanceFieldDump<?> instanceField : first.get().getClassDump().getInstanceFields()) {
 				Object value = first.get().getInstanceFieldValues().get(instanceField);
 
 				fields.add(String.format("'%s'='%s'", instanceField.getName(), value.toString().replace("'", "\\'")));
@@ -157,7 +152,7 @@ public class CsvResultWriter implements ResultWriter {
 
 	@Override
 	public void close() {
-		try (PrintWriter writer = new PrintWriter(new File(this.filename))) {
+		try (PrintWriter writer = new PrintWriter(this.filename)) {
 			writer.write(this.sb.toString());
 		} catch (FileNotFoundException e) {
 			System.out.println("Couldn't export the CSV file due to an error: " + e.getMessage());

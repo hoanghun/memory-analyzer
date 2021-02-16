@@ -60,6 +60,10 @@ public class App {
 		interactiveOption.setRequired(false);
 		options.addOption(interactiveOption);
 
+		Option verboseOption = new Option("v", "verbose", false, "Verbose mode, prints ids of duplicates.");
+		verboseOption.setRequired(false);
+		options.addOption(verboseOption);
+
 		CommandLineParser parser = new DefaultParser();
 		HelpFormatter formatter = new HelpFormatter();
 		CommandLine cmd;
@@ -74,6 +78,7 @@ public class App {
 			boolean fields = cmd.hasOption("fields");
 			boolean csv = cmd.hasOption("csv");
 			boolean interactive = cmd.hasOption("interactive");
+			boolean verbose = cmd.hasOption("verbose");
 
 			List<ResultWriter> resultWriters = new ArrayList<>();
 			if (csv) {
@@ -100,7 +105,7 @@ public class App {
 
 				log.info("Analyzing classes from namespace `{}` in `{}`...\n\n", namespace, inputFilePath);
 				MemoryDump memoryDump = this.getMemoryDump(analyzer, namespace);
-				this.processMemoryDump(memoryDump, fields, resultWriters);
+				this.processMemoryDump(memoryDump, fields, verbose, resultWriters);
 
 				measure.run();
 				resultWriters.forEach(ResultWriter::close);
@@ -110,7 +115,7 @@ public class App {
 
 				log.info("Analyzing classes from excluding namespace `{}` in `{}`...\n\n", excludeNamespace, inputFilePath);
 				MemoryDump memoryDump = this.getMemoryDumpExcludingNamespace(analyzer, excludeNamespace);
-				this.processMemoryDump(memoryDump, fields, resultWriters);
+				this.processMemoryDump(memoryDump, fields, verbose, resultWriters);
 
 				measure.run();
 				resultWriters.forEach(ResultWriter::close);
@@ -166,7 +171,7 @@ public class App {
 	 * @param printFields True if the values should be printed out.
 	 * @param resultWriters Result writer.
 	 */
-	private void processMemoryDump(MemoryDump memoryDump, boolean printFields, List<ResultWriter> resultWriters) {
+	private void processMemoryDump(MemoryDump memoryDump, boolean printFields, boolean verbose, List<ResultWriter> resultWriters) {
 		resultWriters.forEach(writer -> writer.write(memoryDump));
 		WasteAnalyzerPipeline wasteAnalyzer = new ReferenceAndDuplicateWasteAnalyzerPipeline();
 
@@ -174,7 +179,7 @@ public class App {
 		List<Waste> memoryWaste = wasteAnalyzer.findMemoryWaste(memoryDump);
 
 		log.info("Finished waste analysis.");
-		resultWriters.forEach(writer -> writer.write(memoryWaste, wasteAnalyzer, printFields));
+		resultWriters.forEach(writer -> writer.write(memoryWaste, wasteAnalyzer, printFields, verbose));
 	}
 
 	/**

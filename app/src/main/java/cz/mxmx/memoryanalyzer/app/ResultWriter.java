@@ -22,8 +22,9 @@ public interface ResultWriter {
 	 * @param wasteList Memory waste.
 	 * @param wasteAnalyzer Analyzer pipeline.
 	 * @param printFields True if the fields should be printed out.
+	 * @param verbose if true prints ids of duplicates
 	 */
-	void write(List<Waste> wasteList, WasteAnalyzerPipeline wasteAnalyzer, boolean printFields);
+	void write(List<Waste> wasteList, WasteAnalyzerPipeline wasteAnalyzer, boolean printFields, boolean verbose);
 
 	/**
 	 * Close the writer.

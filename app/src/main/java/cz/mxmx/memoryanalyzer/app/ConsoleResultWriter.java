@@ -18,82 +18,90 @@ import java.util.stream.Collectors;
  */
 public class ConsoleResultWriter implements ResultWriter {
 
-	/**
-	 * Processed namespace.
-	 */
-	private final String namespace;
+    /**
+     * Processed namespace.
+     */
+    private final String namespace;
 
-	public ConsoleResultWriter(String namespace) {
-		this.namespace = namespace;
-	}
+    public ConsoleResultWriter(String namespace) {
+        this.namespace = namespace;
+    }
 
-	@Override
-	public void write(MemoryDump memoryDump) {
-		System.out.println("Done, found:");
-		System.out.println("\tClasses: " + memoryDump.getClasses().size());
-		System.out.println("\tInstances: " + memoryDump.getInstances().size());
-		System.out.println("Namespace " + this.namespace);
-		System.out.println("\tClasses: " + memoryDump.getUserClasses().size());
-		System.out.println("\tInstances: " + memoryDump.getUserInstances().size());
+    @Override
+    public void write(MemoryDump memoryDump) {
+        System.out.println("Done, found:");
+        System.out.println("\tClasses: " + memoryDump.getClasses().size());
+        System.out.println("\tInstances: " + memoryDump.getInstances().size());
+        System.out.println("Namespace " + this.namespace);
+        System.out.println("\tClasses: " + memoryDump.getUserClasses().size());
+        System.out.println("\tInstances: " + memoryDump.getUserInstances().size());
 
-		System.out.println();
-		System.out.println("Analyzing memory waste...");
-	}
+        System.out.println();
+        System.out.println("Analyzing memory waste...");
+    }
 
-	@Override
-	public void write(List<Waste> wasteList, WasteAnalyzerPipeline wasteAnalyzer, boolean printFields) {
-		System.out.println("Done, found " + wasteList.size() + " possible ways to save memory:");
-		Map<WasteAnalyzer, List<Waste>> classes = wasteList
-				.stream()
-				.collect(Collectors.groupingBy(Waste::getSourceWasteAnalyzer));
+    @Override
+    public void write(List<Waste> wasteList, WasteAnalyzerPipeline wasteAnalyzer, boolean printFields, boolean verbose) {
+        System.out.println("Done, found " + wasteList.size() + " possible ways to save memory:");
+        Map<WasteAnalyzer, List<Waste>> classes = wasteList
+                .stream()
+                .collect(Collectors.groupingBy(Waste::getSourceWasteAnalyzer));
 
-		classes
-				.entrySet()
-				.stream()
-				.sorted(Map.Entry.comparingByValue(Comparator.comparingInt(value -> -value.size())))
-				.forEach(kv -> {
-					WasteAnalyzer type = kv.getKey();
-					List<Waste> list = kv.getValue();
+        classes
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.comparingInt(value -> -value.size())))
+                .forEach(kv -> {
+                    WasteAnalyzer type = kv.getKey();
+                    List<Waste> list = kv.getValue();
 
-					System.out.format("\t%s (%d):\n", wasteAnalyzer.getWasteTitle(type), list.size());
-					list
-							.stream()
-							.sorted()
-							.map(waste -> String.format(
-									"\t\t%s: %s%s",
-									waste.getTitle(),
-									waste.getDescription(),
-									printFields ? this.dumpInstanceFields(waste) : ""
-							))
-							.forEach(System.out::println);
-					System.out.println();
-				});
-	}
+                    System.out.format("\t%s (%d):\n", wasteAnalyzer.getWasteTitle(type), list.size());
+                    list
+                            .stream()
+                            .sorted()
+                            .map(waste -> String.format(
+                                    "\t\t%s: %s%s%s",
+                                    waste.getTitle(),
+                                    waste.getDescription(),
+                                    verbose ? this.dumpIds(waste) : "",
+                                    printFields ? this.dumpInstanceFields(waste) : ""
+                            ))
+                            .forEach(System.out::println);
+                    System.out.println();
+                });
+    }
 
-	/**
-	 * Creates a string with instance fields values.
-	 * @param waste Memory waste
-	 * @return String with fields.
-	 */
-	private String dumpInstanceFields(Waste waste) {
-		StringBuilder sb = new StringBuilder();
-		Optional<InstanceDump> first = waste.getAffectedInstances().stream().findFirst();
+    /**
+     * Creates a string with instance fields values.
+     *
+     * @param waste Memory waste
+     * @return String with fields.
+     */
+    private String dumpInstanceFields(Waste waste) {
+        StringBuilder sb = new StringBuilder();
+        Optional<InstanceDump> first = waste.getAffectedInstances().stream().findFirst();
 
-		sb.append("\n");
+        sb.append("\n");
 
-		if (first.isPresent()) {
-			for (InstanceFieldDump instanceField : first.get().getClassDump().getInstanceFields()) {
-				Object value = first.get().getInstanceFieldValues().get(instanceField);
+        if (first.isPresent()) {
+            for (InstanceFieldDump<?> instanceField : first.get().getClassDump().getInstanceFields()) {
+                Object value = first.get().getInstanceFieldValues().get(instanceField);
 
-				sb.append(String.format("\t\t\t%s = `%s`\n", instanceField.getName(), value));
-			}
-		}
+                sb.append(String.format("\t\t\t%s = `%s`\n", instanceField.getName(), value));
+            }
+        }
 
-		return sb.toString();
-	}
+        return sb.toString();
+    }
 
-	@Override
-	public void close() {
-		// empty
-	}
+    private String dumpIds(Waste waste) {
+        return "\n\t\t\t" + waste.getAffectedInstances().stream()
+                .map(it -> it.getInstanceId().toString())
+                .collect(Collectors.joining(","));
+    }
+
+    @Override
+    public void close() {
+        // empty
+    }
 }
