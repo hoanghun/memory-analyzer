@@ -21,7 +21,7 @@ import java.util.*;
  */
 public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
     private static final Logger log = LoggerFactory.getLogger(DuplicateInstanceWasteAnalyzer.class);
-    private final Map<Long, Set<Long>> currentlyComparing = new HashMap<>();
+    private final Set<InstancesIds> currentlyComparing = new HashSet<>();
     private final InstanceComparisonCacheWithStatistics cache;
     private boolean cacheResult = true;
 
@@ -85,7 +85,7 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         return deepEquals(instance, instance2, currentlyComparing);
     }
 
-    private boolean deepEquals(InstanceDump a, InstanceDump b, Map<Long, Set<Long>> currentlyComparing) {
+    private boolean deepEquals(InstanceDump a, InstanceDump b, Set<InstancesIds> currentlyComparing) {
         if (a.getInstanceId().equals(b.getInstanceId())) {
             return true;
         }
@@ -99,11 +99,12 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
             return cacheResult.get();
         }
 
-        if (currentlyComparing.getOrDefault(a.getInstanceId(), Collections.emptySet()).contains(b.getInstanceId())) {
+        InstancesIds ids = new InstancesIds(a.getInstanceId(), b.getInstanceId());
+        if (currentlyComparing.contains(ids)) {
             this.cacheResult = false; // we cannot cache result based on this, could be false positive
             return true;
         } else {
-            currentlyComparing.computeIfAbsent(a.getInstanceId(), k -> new HashSet<>()).add(b.getInstanceId());
+            currentlyComparing.add(ids);
         }
 
         ClassDump classDump = a.getClassDump();
@@ -173,5 +174,28 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         } while (parent != null && parent.getName() != null && !parent.getName().equals(Object.class.getName()));
 
         return false;
+    }
+
+    private static class InstancesIds {
+        Long idFirst;
+        Long idSecond;
+
+        public InstancesIds(Long idFirst, Long idSecond) {
+            this.idFirst = idFirst;
+            this.idSecond = idSecond;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            InstancesIds that = (InstancesIds) o;
+            return Objects.equals(idFirst, that.idFirst) && Objects.equals(idSecond, that.idSecond);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(idFirst, idSecond);
+        }
     }
 }

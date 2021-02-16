@@ -25,9 +25,10 @@ public class InstanceDumpFieldTest {
         fields.add(createField("fourth", "long"));
         fields.add(createField("fifth", "boolean"));
         fields.add(createField("sixth", null));
+        fields.add(createField("seventh", "object"));
 
         fields.sort(GenericMemoryDumpProcessor.fieldsComparator());
-        assertObjectsLast(fields, 2);
+        assertObjectsLast(fields, 3);
     }
 
     @Test
