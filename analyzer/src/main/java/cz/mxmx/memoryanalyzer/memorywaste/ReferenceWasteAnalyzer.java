@@ -43,7 +43,7 @@ public class ReferenceWasteAnalyzer implements WasteAnalyzer {
      * @param instance instance dump to count fields for
      * @return dto with values for references counts
      */
-    public ReferenceCounter countReferences(InstanceDump instance) {
+    public static ReferenceCounter countReferences(InstanceDump instance) {
         ClassDump classDump = instance.getClassDump();
         long referencesCount = 0;
         long nullReferencesCount = 0;

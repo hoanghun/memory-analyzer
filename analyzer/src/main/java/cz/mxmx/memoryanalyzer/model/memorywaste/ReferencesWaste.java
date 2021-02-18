@@ -78,4 +78,12 @@ public class ReferencesWaste implements Waste {
     public int compareTo(Waste o) {
         return 0;
     }
+
+    public long getReferencesCount() {
+        return referencesCount;
+    }
+
+    public long getNullReferencesCount() {
+        return nullReferencesCount;
+    }
 }
