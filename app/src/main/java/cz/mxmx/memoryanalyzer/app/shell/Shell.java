@@ -3,6 +3,7 @@ package cz.mxmx.memoryanalyzer.app.shell;
 import cz.mxmx.memoryanalyzer.model.InstanceDump;
 import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
+import edu.tufts.eaftan.hprofparser.parser.datastructures.Value;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -42,12 +43,28 @@ public class Shell {
     }
 
     private void printInstanceDump(InstanceDump instanceDump) {
-        System.out.printf("Id: %d%n", instanceDump.getInstanceId());
+        System.out.printf("id: %d%n", instanceDump.getInstanceId());
         StringBuilder sb = new StringBuilder();
+        sb.append(String.format("class: %s\n", instanceDump.getClassDump().getName()));
+
+        if (instanceDump.getClassDump().getInstanceFields().size() == 0) {
+            sb.append("No fields.");
+        }
+
         for (InstanceFieldDump<?> instanceField : instanceDump.getClassDump().getInstanceFields()) {
             Object value = instanceDump.getInstanceFieldValues().get(instanceField);
 
-            sb.append(String.format("\t%s = `%s`\n", instanceField.getName(), value));
+            String template = ": %s";
+            String type = "";
+            if (value instanceof Value) {
+                type = String.format(template, ((Value<?>) value).type);
+            } else if (value instanceof InstanceDump) {
+                type = String.format(template, ((InstanceDump) value).getClassDump().getName());
+            } else if (value instanceof String) {
+                type = String.format(template, "String");
+            }
+
+            sb.append(String.format("\t%s %s = `%s`\n", instanceField.getName(), type, value));
         }
 
         System.out.println(sb.toString());
