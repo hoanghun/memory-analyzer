@@ -4,6 +4,7 @@ import cz.mxmx.memoryanalyzer.model.InstanceDump;
 import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -15,22 +16,27 @@ public class Shell {
     }
 
     public void run() {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            System.out.print("> ");
-            String command = scanner.nextLine();
-            if (command.equals("stop")) break;
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
+                System.out.print("> ");
+                if (!scanner.hasNextLine()) break;
+                String command = scanner.nextLine();
+                if (command.equals("stop")) break;
 
-            try {
-                Long id = Long.parseLong(command);
-                InstanceDump instanceDump = instances.get(id);
-                if (instanceDump == null) {
-                    System.out.println("Didn't find any instance with given id.");
-                } else {
-                    printInstanceDump(instanceDump);
-                }
-            } catch (NumberFormatException nfe) {
-                System.out.println("Not a number.");
+                String[] ids = command.split("[\\s,]+");
+                Arrays.stream(ids).forEach(id -> {
+                    try {
+                        InstanceDump instanceDump = instances.get(Long.parseLong(id));
+                        if (instanceDump == null) {
+                            System.out.println("Didn't find any instance with given id.");
+                        }
+                        else {
+                            printInstanceDump(instanceDump);
+                        }
+                    } catch (NumberFormatException nfe) {
+                        System.out.println("Not a number.");
+                    }
+                });
             }
         }
     }
