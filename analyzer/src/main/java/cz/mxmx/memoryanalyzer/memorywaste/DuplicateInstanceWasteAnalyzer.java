@@ -64,7 +64,7 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
             }
 
             if (doneCount % onePercent == 0) {
-                log.info("Done {}%.", (doneCount / ((double) total - 2)) * 100);
+                log.info("Done {}%.", (doneCount / ((double) total)) * 100);
             }
         }
 

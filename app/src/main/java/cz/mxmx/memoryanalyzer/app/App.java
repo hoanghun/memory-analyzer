@@ -193,8 +193,8 @@ public class App {
 		Instant now = Instant.now();
 
 		return () -> {
-			Duration duration = Duration.between(now, Instant.now());
-			System.out.format("Duration: %s\n", duration);
+			long seconds = Duration.between(now, Instant.now()).getSeconds();
+			System.out.printf("Duration (hh:mm:ss): %d:%02d:%02d\n", seconds / 3600, (seconds % 3600) / 60, (seconds % 60));
 		};
 	}
 
