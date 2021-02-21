@@ -156,13 +156,15 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
     private Map<Long, InstanceArrayDump> getInstanceArrays(Map<Long, RawObjectArrayDump> rawObjectArrayDumps, Map<Long, InstanceDump> instanceDumpMap, Map<Long, ClassDump> classDumpMap) {
         Map<Long, InstanceArrayDump> arrays = new HashMap<>();
 
-        rawObjectArrayDumps.forEach((key, value) -> {
-            List<Object> instances = new ArrayList<>();
-
-            value.getItems().forEach(item -> instances.add(instanceDumpMap.get(item)));
+        for (Map.Entry<Long, RawObjectArrayDump> entry : rawObjectArrayDumps.entrySet()) {
+            Long key = entry.getKey();
+            RawObjectArrayDump value = entry.getValue();
+            List<Object> instances = value.getItems().stream()
+                    .map(instanceDumpMap::get)
+                    .collect(Collectors.toList());
 
             arrays.put(key, new InstanceArrayDump(key, classDumpMap.get(value.getItemClassObjectId()), instances));
-        });
+        }
 
         return arrays;
     }
@@ -174,11 +176,11 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
      * @return Processed primitive arrays.
      */
     private Map<Long, ArrayDump<?>> getPrimitiveArrays(Map<Long, RawPrimitiveArrayDump> rawPrimitiveArrayDumps) {
-        Map<Long, ArrayDump<?>> arrays = new HashMap<>();
-
-        rawPrimitiveArrayDumps.forEach((key, value) -> arrays.put(key, new ArrayDump<>(key, getClass(value.getItemClassObjectId()), value.getItems())));
-
-        return arrays;
+        return rawPrimitiveArrayDumps.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        it -> new ArrayDump<>(it.getKey(), getClass(it.getValue().getItemClassObjectId()), it.getValue().getItems()))
+                );
     }
 
     /**
@@ -274,30 +276,31 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
      * @return String from the array.
      */
     private String extractString(InstanceDump instanceDump, Map<Long, RawPrimitiveArrayDump> primitiveArrayDumpMap) {
-        final String[] ret = {null};
+        String extractedString = null;
 
-        instanceDump.getInstanceFieldValues().forEach((field, value) -> {
-            if (Objects.equals(field.getName(), "value")) {
-                Long key = (Long) ((Value<?>) value).value;
-                RawPrimitiveArrayDump rawPrimitiveArrayDump = primitiveArrayDumpMap.get(key);
-                if (rawPrimitiveArrayDump != null) {
-                    if ("byte".equals(rawPrimitiveArrayDump.getItemType())) {
-                        List<Object> values = rawPrimitiveArrayDump.getItems();
-                        byte[] bytes = new byte[values.size()];
-                        for (int i = 0; i < values.size(); i++) {
-                            if (values.get(i) instanceof Value<?>) {
-                                bytes[i] = (Byte) ((Value<?>) values.get(i)).value;
-                            }
-                        }
-                        ret[0] = new String(bytes);
-                    } else {
-                        ret[0] = this.charArrayToString(rawPrimitiveArrayDump.getItems());
+        Optional<Long> key = instanceDump.getInstanceFieldValues().entrySet().stream()
+                .filter(it -> Objects.equals("value", it.getKey().getName()))
+                .filter(it -> it.getValue() instanceof Value && ((Value<?>) it.getValue()).value instanceof Long)
+                .map(it -> (Long) ((Value<?>) it.getValue()).value)
+                .findFirst();
+
+        Optional<RawPrimitiveArrayDump> rawPrimitiveArrayDump = key.map(primitiveArrayDumpMap::get);
+        if (rawPrimitiveArrayDump.isPresent()) {
+            if ("byte".equals(rawPrimitiveArrayDump.get().getItemType())) {
+                List<Object> values = rawPrimitiveArrayDump.get().getItems();
+                byte[] bytes = new byte[values.size()];
+                for (int i = 0; i < values.size(); i++) {
+                    if (values.get(i) instanceof Value<?>) {
+                        bytes[i] = (Byte) ((Value<?>) values.get(i)).value;
                     }
                 }
+                extractedString = new String(bytes);
+            } else {
+                extractedString = this.charArrayToString(rawPrimitiveArrayDump.get().getItems());
             }
-        });
+        }
 
-        return ret[0];
+        return extractedString;
     }
 
     /**

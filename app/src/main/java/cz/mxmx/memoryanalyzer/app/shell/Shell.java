@@ -5,7 +5,6 @@ import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
 import edu.tufts.eaftan.hprofparser.parser.datastructures.Value;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -25,19 +24,18 @@ public class Shell {
                 if (command.equals("stop")) break;
 
                 String[] ids = command.split("[\\s,]+");
-                Arrays.stream(ids).forEach(id -> {
+                for (String id : ids) {
                     try {
                         InstanceDump instanceDump = instances.get(Long.parseLong(id));
                         if (instanceDump == null) {
                             System.out.println("Didn't find any instance with given id.");
-                        }
-                        else {
+                        } else {
                             printInstanceDump(instanceDump);
                         }
                     } catch (NumberFormatException nfe) {
                         System.out.println("Not a number.");
                     }
-                });
+                }
             }
         }
     }

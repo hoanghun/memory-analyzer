@@ -9,6 +9,7 @@ import cz.mxmx.memoryanalyzer.model.memorywaste.Waste;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Analyzer to find ineffective list usage.
@@ -63,14 +64,6 @@ public class ListWasteAnalyzer extends ListAnalyzer implements WasteAnalyzer {
      * @return Number of nulls within the array.
      */
     private long findNullWastedList(InstanceArrayDump instanceArrayDump) {
-        final long[] nullCount = {0};
-
-        instanceArrayDump.getValues().forEach(val -> {
-            if (val == null) {
-                nullCount[0]++;
-            }
-        });
-
-        return nullCount[0];
+        return instanceArrayDump.getValues().stream().filter(Objects::isNull).count();
     }
 }

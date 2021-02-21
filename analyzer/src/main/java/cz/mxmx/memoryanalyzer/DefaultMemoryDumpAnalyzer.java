@@ -1,6 +1,7 @@
 package cz.mxmx.memoryanalyzer;
 
 import cz.mxmx.memoryanalyzer.exception.MemoryDumpAnalysisException;
+import cz.mxmx.memoryanalyzer.model.ClassDump;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
 import cz.mxmx.memoryanalyzer.model.raw.RawMemoryDump;
 import cz.mxmx.memoryanalyzer.parse.RawRecordHandler;
@@ -14,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -96,9 +96,10 @@ public class DefaultMemoryDumpAnalyzer implements MemoryDumpAnalyzer {
         log.info("Processing loaded raw dump.");
         MemoryDump dump = this.genericProcessor.process(this.memoryDump);
         log.info("Finished processing loaded raw dump.");
-        Set<String> namespaces = new HashSet<>();
 
-        dump.getClasses().forEach((id, cl) -> namespaces.add(cl.getName()));
+        Set<String> namespaces = dump.getClasses().values().stream()
+                .map(ClassDump::getName)
+                .collect(Collectors.toSet());
 
         return this.filterNamespaces(namespaces);
     }

@@ -9,6 +9,7 @@ import cz.mxmx.memoryanalyzer.model.raw.RawMemoryDump;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Filters the instances and classes via specified namespaces.
@@ -76,15 +77,9 @@ public class FilteredMemoryDumpProcessor implements MemoryDumpProcessor {
      * @return Filtered instances.
      */
     protected Map<Long, InstanceDump> getUserInstances(Map<Long, InstanceDump> instances, Map<Long, ClassDump> userClasses) {
-        Map<Long, InstanceDump> userInstances = new HashMap<>();
-
-        instances.forEach((key, value) -> {
-            if (userClasses.containsKey(value.getClassDump().getClassId())) {
-                userInstances.put(key, value);
-            }
-        });
-
-        return userInstances;
+        return instances.entrySet().stream()
+                .filter(it -> userClasses.containsKey(it.getValue().getClassDump().getClassId()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
     /**
@@ -94,20 +89,10 @@ public class FilteredMemoryDumpProcessor implements MemoryDumpProcessor {
      * @return Filtered classes.
      */
     protected Map<Long, ClassDump> getUserClasses(Map<Long, ClassDump> classes) {
-        Map<Long, ClassDump> userClasses = new HashMap<>();
-
-        classes.forEach((key, value) -> this.namespaces.forEach((namespace) -> {
-            if (this.excludeNamespace) {
-                if (!value.getName().matches(namespace)) {
-                    userClasses.put(key, value);
-                }
-            } else {
-                if (value.getName().matches(namespace)) {
-                    userClasses.put(key, value);
-                }
-            }
-        }));
-
-        return userClasses;
+        return classes.entrySet().stream()
+                .filter(it -> namespaces.stream()
+                        .anyMatch(namespace -> excludeNamespace != it.getValue().getName().matches(namespace)))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
+
 }
