@@ -44,6 +44,15 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
         return TYPE_TRANSLATION_MAP.get(key);
     }
 
+    public static Comparator<InstanceFieldDump<?>> fieldsComparator() {
+        return (o1, o2) -> {
+            if (o1.getType().equals(o2.getType())) return 0;
+            if (o1.getType().equals(TYPE_TRANSLATION_MAP.get("object"))) return 1;
+            if (o2.getType().equals(TYPE_TRANSLATION_MAP.get("object"))) return -1;
+            return 0;
+        };
+    }
+
     @Override
     public MemoryDump process(RawMemoryDump rawMemoryDump) {
         if (this.cache.containsKey(rawMemoryDump)) {
@@ -120,7 +129,6 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
      * @return Processed stack traces.
      */
     private List<StackTrace> getStackTraces(List<RawStackTrace> rawStackTraces, List<RawStackFrame> rawStackFrames, Map<Long, String> stringMap, Map<Long, ClassDump> classes) {
-        List<StackTrace> stackTraces = new ArrayList<>();
         Map<Long, StackFrame> idToRawStackFrame = rawStackFrames.stream().collect(Collectors.toMap(
                 RawStackFrame::getStackFrameId,
                 rawStackFrame -> new StackFrame(
@@ -133,16 +141,14 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
                 )
         ));
 
-        for (RawStackTrace rawStackTrace : rawStackTraces) {
-            stackTraces.add(new StackTrace(
-                    rawStackTrace.getStackTraceSerialNum(),
-                    rawStackTrace.getThreadSerialNum(),
-                    rawStackTrace.getNumFrames(),
-                    Arrays.stream(rawStackTrace.getStackFrameIds()).mapToObj(idToRawStackFrame::get).collect(Collectors.toList())
-            ));
-        }
-
-        return stackTraces;
+        return rawStackTraces.stream()
+                .map(rawStackTrace -> new StackTrace(
+                        rawStackTrace.getStackTraceSerialNum(),
+                        rawStackTrace.getThreadSerialNum(),
+                        rawStackTrace.getNumFrames(),
+                        Arrays.stream(rawStackTrace.getStackFrameIds()).mapToObj(idToRawStackFrame::get).collect(Collectors.toList()))
+                )
+                .collect(Collectors.toList());
     }
 
     /**
@@ -228,7 +234,10 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
             Map<InstanceFieldDump<?>, Object> fieldsToAdd = new HashMap<>();
 
             instanceValues.forEach((fieldName, fieldValue) -> {
-                Optional<InstanceFieldDump<?>> any = value.getClassDump().getInstanceFields().stream().filter(field -> field.getName().equals(fieldName)).findAny();
+                Optional<InstanceFieldDump<?>> any = value.getClassDump().getInstanceFields().stream()
+                        .filter(field -> field.getName().equals(fieldName))
+                        .findAny();
+
                 any.ifPresent(instanceFieldDump -> {
                     if (instanceFieldDump.getType().equals(Object.class) && ((Value<?>) fieldValue).value instanceof Long && instances.get(((Long) (((Value<?>) fieldValue).value))) != null) {
                         Long instanceDumpKey = (Long) ((Value<?>) fieldValue).value;
@@ -375,7 +384,6 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
                     rawClassDump.getInstanceFields().forEach((name, strType) -> value.addInstanceField(name, getClass(strType)));
                     value.getInstanceFields().sort(fieldsComparator());
                 }
-
         );
 
         classes.forEach((key, value) -> rawMemoryDump.getRawClassDumps().get(key).getStaticFields()
@@ -385,15 +393,6 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
         classes.forEach((key, value) -> rawMemoryDump.getRawClassDumps().get(key).getStaticFields()
                 .forEach((name, val) -> value.addStaticField(name, getClass(((Value<?>) val).type.toString()), ((Value<?>) val).value))
         );
-    }
-
-    public static Comparator<InstanceFieldDump<?>> fieldsComparator() {
-        return (o1, o2) -> {
-            if (o1.getType().equals(o2.getType())) return 0;
-            if (o1.getType().equals(TYPE_TRANSLATION_MAP.get("object"))) return 1;
-            if (o2.getType().equals(TYPE_TRANSLATION_MAP.get("object"))) return -1;
-            return 0;
-        };
     }
 
     /**
