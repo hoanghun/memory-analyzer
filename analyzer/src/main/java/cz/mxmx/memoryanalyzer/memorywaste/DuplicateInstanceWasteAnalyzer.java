@@ -33,6 +33,13 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         this.cache = new DefaultInstanceCacheWithStatistics(cache);
     }
 
+    /**
+     * Analyzes specified instances and finds duplicate instances.
+     * Instances a,b are duplicate iff their fields are the same
+     * including field references.
+     * @param memoryDump Memory dump to process.
+     * @return list of instances and their duplicates.
+     */
     @Override
     public List<Waste> findMemoryWaste(MemoryDump memoryDump) {
         log.info("Instance waste analysis.");
