@@ -19,6 +19,12 @@ import java.util.Map;
 public class ReferenceWasteAnalyzer implements WasteAnalyzer {
     private static final Logger log = LoggerFactory.getLogger(ReferenceWasteAnalyzer.class);
 
+    /**
+     * Counts references and null references.
+     * @param memoryDump Memory dump to process.
+     * @return list of waste of size one which holds number of total references
+     * and number of null references
+     */
     @Override
     public List<Waste> findMemoryWaste(MemoryDump memoryDump) {
         log.info("Starting reference waste analysis");
