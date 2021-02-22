@@ -92,6 +92,15 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         return deepEquals(instance, instance2, currentlyComparing);
     }
 
+    /**
+     * Compares instances a and b based on their fields. If their fields are references, these
+     * fields are recursively compared too. Instances have to be of the same class hierarchy
+     * and have to have same amount of fields to even consider that they are duplicates.
+     * @param a instance A
+     * @param b instance B
+     * @param currentlyComparing set of currently comparing pairs to prevent cycles.
+     * @return true if a and b are duplicates else false
+     */
     private boolean deepEquals(InstanceDump a, InstanceDump b, Set<InstancesIds> currentlyComparing) {
         if (a.getInstanceId().equals(b.getInstanceId())) {
             return true;
