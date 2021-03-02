@@ -23,7 +23,6 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
     private static final Logger log = LoggerFactory.getLogger(DuplicateInstanceWasteAnalyzer.class);
     private final Set<InstancesIds> currentlyComparing = new HashSet<>();
     private final InstanceComparisonCacheWithStatistics cache;
-    private boolean cacheResult = true;
 
     public DuplicateInstanceWasteAnalyzer() {
         this.cache = new DefaultInstanceCacheWithStatistics(new DummyInstanceComparisonCache());
@@ -52,13 +51,16 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         long doneCount = 0;
         List<InstanceDump> duplicates = new ArrayList<>();
 
-        while (instances.size() > 0) {
+        for (int i = 0; i < instances.size() - 1; i++) {
             duplicates.clear();
-            InstanceDump instance = instances.remove(instances.size() - 1);
+            InstanceDump instance = instances.get(i);
+            if (instance == null) continue;
+            for (int j = i + 1; j < instances.size(); j++) {
+                InstanceDump compareWith = instances.get(j);
+                if (compareWith == null) continue;
 
-            for (InstanceDump compareWith : instances) {
                 if (this.instancesAreSame(instance, compareWith)) {
-                    duplicates.add(compareWith);
+                    duplicates.add(instances.set(j, null));
                 }
             }
             doneCount++;
@@ -66,7 +68,6 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
             if (duplicates.size() > 0) {
                 doneCount += duplicates.size();
                 duplicates.add(instance);
-                instances.removeAll(duplicates);
                 wasteList.add(new DuplicateInstanceWaste(this, new ArrayList<>(duplicates)));
             }
 
@@ -74,8 +75,6 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
                 log.info("Done {}%.", (doneCount / ((double) total)) * 100);
             }
         }
-
-        log.info("Cache statistics - hit: {}, miss: {}.", cache.getCacheHitCount(), cache.getCacheMissCount());
 
         return wasteList;
     }
@@ -102,22 +101,12 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
      * @return true if a and b are duplicates else false
      */
     private boolean deepEquals(InstanceDump a, InstanceDump b, Set<InstancesIds> currentlyComparing) {
-        if (a.getInstanceId().equals(b.getInstanceId())) {
-            return true;
-        }
-
-        if (a.getInstanceFieldValues().size() != b.getInstanceFieldValues().size() || !this.instancesOfSameClass(a, b)) {
+        if (!(a.getClassDump() == b.getClassDump())) {
             return false;
-        }
-
-        Optional<Boolean> cacheResult = getResultFromCache(a, b);
-        if (cacheResult.isPresent()) {
-            return cacheResult.get();
         }
 
         InstancesIds ids = new InstancesIds(a.getInstanceId(), b.getInstanceId());
         if (currentlyComparing.contains(ids)) {
-            this.cacheResult = false; // we cannot cache result based on this, could be false positive
             return true;
         } else {
             currentlyComparing.add(ids);
@@ -144,80 +133,8 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         }
 
         instancesSame = instancesSame && classDump.getInstanceFields().size() > 0;
-        if (this.cacheResult) {
-            cacheResult(a, b, instancesSame);
-        } else {
-            this.cacheResult = true;
-        }
 
         return instancesSame;
-    }
-
-    private void cacheResult(InstanceDump a, InstanceDump b, boolean result) {
-        cache.cacheComparisonResult(a, b, result);
-    }
-
-    private Optional<Boolean> getResultFromCache(InstanceDump a, InstanceDump b) {
-        return cache.instancesEqual(a, b);
-    }
-
-    /**
-     * Checks if the instances are of the same class.
-     *
-     * @param instance  Instance 1
-     * @param instance2 Instance 2
-     * @return True if t he instances are of the same class, otherwise false
-     */
-    private boolean instancesOfSameClass(InstanceDump instance, InstanceDump instance2) {
-        ClassDump parent = instance.getClassDump();
-
-        do {
-            if (parent.equals(instance2.getClassDump())) {
-                return true;
-            }
-
-            parent = parent.getSuperClassDump();
-        } while (parent != null && parent.getName() != null && !parent.getName().equals(Object.class.getName()));
-
-        parent = instance2.getClassDump();
-
-        do {
-            if (parent.equals(instance.getClassDump())) {
-                return true;
-            }
-
-            parent = parent.getSuperClassDump();
-        } while (parent != null && parent.getName() != null && !parent.getName().equals(Object.class.getName()));
-
-        return false;
-    }
-
-    /**
-     * @param a instance dump a
-     * @param b instance dumb b
-     * @return true if objects have same references or string values.
-     * @deprecated Deprecated version to compare objects. Can compare only references as long values and Strings.
-     */
-    private boolean shallowEquals(InstanceDump a, InstanceDump b) {
-        if (a.getInstanceFieldValues().size() != b.getInstanceFieldValues().size()) {
-            return false;
-        }
-
-        if (this.instancesOfSameClass(a, b)) {
-            ClassDump classDump = a.getClassDump();
-
-            for (InstanceFieldDump<?> field : classDump.getInstanceFields()) {
-                Object value = a.getInstanceFieldValues().get(field);
-                Object value2 = b.getInstanceFieldValues().get(field);
-
-                if (!value.equals(value2)) {
-                    return false;
-                }
-            }
-            return classDump.getInstanceFields().size() > 0;
-        }
-
-        return false;
     }
 
     private static class InstancesIds {
