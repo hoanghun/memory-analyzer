@@ -5,10 +5,13 @@ import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
 import edu.tufts.eaftan.hprofparser.parser.datastructures.Value;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
-public class Shell {
+public class Shell implements CommandsVisitor {
     private final Map<Long, InstanceDump> instances;
 
     public Shell(MemoryDump memoryDump) {
@@ -23,21 +26,46 @@ public class Shell {
                 String command = scanner.nextLine();
                 if (command.equals("stop")) break;
 
-                String[] ids = command.split("[\\s,]+");
-                for (String id : ids) {
-                    try {
-                        InstanceDump instanceDump = instances.get(Long.parseLong(id));
-                        if (instanceDump == null) {
-                            System.out.println("Didn't find any instance with given id.");
-                        } else {
-                            printInstanceDump(instanceDump);
-                        }
-                    } catch (NumberFormatException nfe) {
-                        System.out.println("Not a number.");
-                    }
-                }
+                parseCommand(command).accept(this);
             }
         }
+    }
+
+    @Override
+    public void visitIdsCommand(IdsCommand idsCommand) {
+        if (idsCommand.getIds().isEmpty()) {
+            System.out.println("Ids command expects one id or list of ids.");
+        }
+
+        for (Long id : idsCommand.getIds()) {
+            try {
+                InstanceDump instanceDump = instances.get(id);
+                if (instanceDump == null) {
+                    System.out.println("Didn't find any instance with given id.");
+                } else {
+                    printInstanceDump(instanceDump);
+                }
+            } catch (NumberFormatException nfe) {
+                System.out.println("Not a number.");
+            }
+        }
+    }
+
+    private GenericCommand parseCommand(String command) {
+        if (command.startsWith(Commands.IDS.getCommand())) {
+
+            int index = command.indexOf(' ') + 1;
+            if (index == 0) {
+                return new IdsCommand(Collections.emptyList());
+            }
+            command = command.substring(index);
+            String[] ids = command.split("[\\s,]+");
+
+            return new IdsCommand(Arrays.stream(ids).map(Long::parseLong).collect(Collectors.toList()));
+        }
+
+
+        return new InvalidCommand();
     }
 
     private void printInstanceDump(InstanceDump instanceDump) {
