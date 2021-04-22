@@ -21,6 +21,13 @@ import java.util.*;
 
 public class App {
 	private static final Logger log = LoggerFactory.getLogger(App.class);
+	private boolean list;
+	private boolean help;
+	private boolean fields;
+	private boolean csv;
+	private boolean interactive;
+	private boolean verbose;
+	private boolean hasRunAnalysis = true;
 
 	public static void main(String[] args) {
 		new App(args);
@@ -74,12 +81,12 @@ public class App {
 			String inputFilePath = cmd.getOptionValue("path");
 			String namespace = cmd.getOptionValue("namespace");
 			String excludeNamespace = cmd.getOptionValue("exclude");
-			boolean list = cmd.hasOption("list");
-			boolean help = cmd.hasOption("help");
-			boolean fields = cmd.hasOption("fields");
-			boolean csv = cmd.hasOption("csv");
-			boolean interactive = cmd.hasOption("interactive");
-			boolean verbose = cmd.hasOption("verbose");
+			list = cmd.hasOption("list");
+			help = cmd.hasOption("help");
+			fields = cmd.hasOption("fields");
+			csv = cmd.hasOption("csv");
+			interactive = cmd.hasOption("interactive");
+			verbose = cmd.hasOption("verbose");
 
 			List<ResultWriter> resultWriters = new ArrayList<>();
 			if (csv) {
@@ -123,22 +130,48 @@ public class App {
 				measure.run();
 				resultWriters.forEach(ResultWriter::close);
 			} else if (help) {
+				hasRunAnalysis = false;
 				formatter.printHelp("memory-analyzer", options);
 			} else {
+				hasRunAnalysis = false;
 				log.info("No action defined. See --help for more info.");
 			}
-
-			System.exit(0);
-
 		} catch (ParseException | MemoryDumpAnalysisException e) {
 			log.error("Error: " + e.getMessage());
 			formatter.printHelp("memory-analyzer", options);
-			System.exit(1);
 		} catch (FileNotFoundException e) {
 			log.error("Error: Couldn't find the specified input file.");
 		} catch (Exception e) { // print out anything else
 			log.error(e.getMessage());
 		}
+	}
+
+	public boolean isList() {
+		return list;
+	}
+
+	public boolean isHelp() {
+		return help;
+	}
+
+	public boolean isFields() {
+		return fields;
+	}
+
+	public boolean isCsv() {
+		return csv;
+	}
+
+	public boolean isInteractive() {
+		return interactive;
+	}
+
+	public boolean isVerbose() {
+		return verbose;
+	}
+
+	public boolean isHasRunAnalysis() {
+		return hasRunAnalysis;
 	}
 
 	/**
