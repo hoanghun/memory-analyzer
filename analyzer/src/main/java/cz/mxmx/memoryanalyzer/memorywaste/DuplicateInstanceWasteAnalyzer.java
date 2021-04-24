@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Analyzer to find duplicate instances of objects.
@@ -39,15 +40,18 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         log.info("Instance waste analysis.");
         List<Waste> wasteList = new ArrayList<>();
 
-        List<InstanceDump> instances = new ArrayList<>(memoryDump.getUserInstances().values());
-        int total = instances.size();
-        int onePercent = total / 100;
-        log.info("Starting duplicate instance waste analyzer. Using deep equals.");
-        long doneCount = 0;
-        List<InstanceDump> duplicates;
+        Map<String, List<InstanceDump>> instancesGroupedByClass = memoryDump.getUserInstances().values().stream()
+                .collect(Collectors.groupingBy(a -> a.getClassDump().getName()));
+        log.info("Grouped instances by class.");
 
+        instancesGroupedByClass.values().forEach(grouped -> findDuplicates(grouped, wasteList));
+
+        return wasteList;
+    }
+
+    private void findDuplicates(List<InstanceDump> instances, List<Waste> wasteList) {
         for (int i = 0; i < instances.size() - 1; i++) {
-            duplicates = new ArrayList<>();
+            List<InstanceDump> duplicates = new ArrayList<>();
             InstanceDump instance = instances.get(i);
             if (instance == null) continue;
             for (int j = i + 1; j < instances.size(); j++) {
@@ -58,20 +62,12 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
                     duplicates.add(instances.set(j, null));
                 }
             }
-            doneCount++;
 
             if (duplicates.size() > 0) {
-                doneCount += duplicates.size();
                 duplicates.add(instance);
                 wasteList.add(new DuplicateInstanceWaste(this, new ArrayList<>(duplicates)));
             }
-
-            if (doneCount % onePercent == 0) {
-                log.info("Done {}%.", (doneCount / ((double) total)) * 100);
-            }
         }
-
-        return wasteList;
     }
 
     /**
