@@ -1,0 +1,25 @@
+Analyzing classes from namespace `cz.mxmx.memoryanalyzer.example` in `/Users/hungig/Workspace/uni/thesis/dipl/memory-analyzer/experiments/data/simple_experiment.hprof`...
+
+Done, found:
+	Classes: 602
+	Instances: 13611
+Namespace cz.mxmx.memoryanalyzer.example
+	Classes: 3
+	Instances: 110
+
+Analyzing memory waste...
+
+Done, found 10 possible ways to save memory:
+	Duplicate instances (10):
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+
+Duration: PT0.648924S

@@ -1,0 +1,14 @@
+Analyzing classes from namespace `java.util.concurrent` in `/Users/hungig/Workspace/uni/thesis/dipl/memory-analyzer/sandbox/data/heapdump-spring-boot-example.hprof`...
+
+Done, found:
+	Classes: 7108
+	Instances: 159081
+Namespace java.util.concurrent
+	Classes: 113
+	Instances: 17748
+
+Analyzing memory waste...
+Summary: 0
+Took 56613 ms.
+Done, found 0 possible ways to save memory:
+Duration: PT1M0.03461S

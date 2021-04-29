@@ -1,0 +1,68 @@
+18:46:23.782 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Analyzing classes from namespace `cz.mxmx.memoryanalyzer.example` in `experiments/data/deep_comparison.hprof`...
+
+
+18:46:23.788 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Starting parsing dump from experiments/data/deep_comparison.hprof
+18:46:23.957 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Finished parsing the dump.
+18:46:23.958 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Processing raw dump.
+18:46:24.309 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Finished processing raw dump.
+Done, found:
+	Classes: 602
+	Instances: 13793
+Namespace cz.mxmx.memoryanalyzer.example
+	Classes: 3
+	Instances: 200
+
+Analyzing memory waste...
+18:46:24.313 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Starting waste analysis. Using cz.mxmx.memoryanalyzer.memorywaste.ReferenceAndDuplicateWasteAnalyzerPipeline.
+18:46:24.314 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Instance waste analysis.
+18:46:24.314 [Thread-1] INFO  cz.mxmx.memoryanalyzer.memorywaste.ReferenceWasteAnalyzer - Starting reference waste analysis
+18:46:24.315 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Starting duplicate instance waste analyzer. Using deep equals.
+18:46:24.316 [Thread-1] INFO  cz.mxmx.memoryanalyzer.memorywaste.ReferenceWasteAnalyzer - Finished reference waste analysis
+18:46:24.317 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 5.0%.
+18:46:24.318 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 10.0%.
+18:46:24.318 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 15.0%.
+18:46:24.319 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 20.0%.
+18:46:24.319 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 25.0%.
+18:46:24.319 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 30.0%.
+18:46:24.320 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 35.0%.
+18:46:24.320 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 40.0%.
+18:46:24.320 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 45.0%.
+18:46:24.320 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 50.0%.
+18:46:24.321 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 55.00000000000001%.
+18:46:24.321 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 60.0%.
+18:46:24.321 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 65.0%.
+18:46:24.321 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 70.0%.
+18:46:24.326 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 75.0%.
+18:46:24.326 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 80.0%.
+18:46:24.326 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 85.0%.
+18:46:24.327 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 90.0%.
+18:46:24.327 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 95.0%.
+18:46:24.327 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Done 100.0%.
+18:46:24.328 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Finished waste analysis.
+Done, found 21 possible ways to save memory:
+	Duplicate instances (20):
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Parent': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Parent' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Parent': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Parent' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Parent': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Parent' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Parent': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Parent' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Parent': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Parent' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Parent': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Parent' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Parent': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Parent' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Parent': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Parent' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Parent': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Parent' class contain exactly the same data.
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Parent': 10 instances of the 'cz.mxmx.memoryanalyzer.example.Parent' class contain exactly the same data.
+
+	References analysis (1):
+		References waste analysis: Total references count 300, of that 0 are null references. Null references are 0.00% of total references.
+
+Duration (hh:mm:ss): 0:00:00

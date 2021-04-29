@@ -1,0 +1,522 @@
+20:59:28.852 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Analyzing classes from namespace `org.springframework` in `/Users/hungig/Workspace/uni/thesis/dipl/memory-analyzer/sandbox/data/heapdump-spring-boot-example.hprof`...
+
+
+20:59:28.858 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Starting parsing dump from /Users/hungig/Workspace/uni/thesis/dipl/memory-analyzer/sandbox/data/heapdump-spring-boot-example.hprof
+20:59:30.461 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Finished parsing the dump.
+20:59:30.462 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Processing raw dump.
+20:59:32.640 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Finished processing raw dump.
+Done, found:
+	Classes: 7108
+	Instances: 159081
+Namespace org.springframework
+	Classes: 2342
+	Instances: 11597
+
+Analyzing memory waste...
+20:59:32.644 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Starting waste analysis. Using cz.mxmx.memoryanalyzer.memorywaste.ReferenceAndDuplicateWasteAnalyzerPipeline.
+20:59:32.645 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Instance waste analysis.
+20:59:32.656 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Grouped instances by class.
+20:59:33.302 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Analysis took 656 ms.
+20:59:33.306 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Found 2492 duplicates.
+org.springframework.core.annotation.AnnotationAttributes & 22 & 442 \\
+org.springframework.core.annotation.AnnotationUtils$DefaultValueHolder & 4 & 349 \\
+org.springframework.beans.BeanMetadataAttribute & 5 & 286 \\
+org.springframework.core.convert.converter.GenericConverter$ConvertiblePair & 116 & 249 \\
+org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference & 101 & 211 \\
+org.springframework.util.LinkedMultiValueMap & 10 & 130 \\
+org.springframework.beans.MutablePropertyValues & 1 & 119 \\
+org.springframework.cglib.core.Signature & 14 & 95 \\
+org.springframework.core.ResolvableType & 23 & 94 \\
+org.springframework.asm.Type & 27 & 70 \\
+org.springframework.core.ResolvableType$DefaultVariableResolver & 22 & 66 \\
+org.springframework.boot.autoconfigure.condition.ConditionMessage & 22 & 59 \\
+org.springframework.boot.autoconfigure.condition.ConditionOutcome & 22 & 59 \\
+org.springframework.cglib.core.WeakCacheKey & 1 & 38 \\
+org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter & 8 & 26 \\
+org.springframework.core.convert.TypeDescriptor & 8 & 26 \\
+org.springframework.web.util.UrlPathHelper & 2 & 21 \\
+org.springframework.beans.factory.config.ConstructorArgumentValues & 2 & 17 \\
+org.springframework.beans.factory.support.GenericBeanDefinition & 1 & 14 \\
+org.springframework.core.convert.support.GenericConversionService$ConvertersForPair & 3 & 11 \\
+org.springframework.util.AntPathMatcher$PathSeparatorPatternCache & 1 & 9 \\
+org.springframework.util.AntPathMatcher & 1 & 7 \\
+org.springframework.boot.context.properties.source.SpringConfigurationPropertySource$DelegatingPropertyMapper & 1 & 7 \\
+org.springframework.http.converter.ResourceHttpMessageConverter & 1 & 6 \\
+org.springframework.boot.context.properties.source.ConfigurationPropertyName$ElementType & 2 & 6 \\
+org.springframework.web.accept.PathExtensionContentNegotiationStrategy & 1 & 6 \\
+org.springframework.core.LocalVariableTableParameterNameDiscoverer & 1 & 5 \\
+org.springframework.web.cors.UrlBasedCorsConfigurationSource & 1 & 4 \\
+org.springframework.http.converter.StringHttpMessageConverter & 1 & 4 \\
+org.springframework.web.method.annotation.RequestParamMethodArgumentResolver & 2 & 4 \\
+org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration$$FastClassBySpringCGLIB$$e2017fd7 & 1 & 4 \\
+org.springframework.util.unit.DataSize & 2 & 4 \\
+org.springframework.http.converter.json.MappingJackson2HttpMessageConverter & 1 & 4 \\
+org.springframework.web.servlet.mvc.condition.ConsumesRequestCondition & 1 & 4 \\
+org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter & 1 & 3 \\
+org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration$$FastClassBySpringCGLIB$$75715220 & 1 & 3 \\
+org.springframework.web.servlet.mvc.condition.RequestConditionHolder & 1 & 3 \\
+org.springframework.web.servlet.resource.DefaultResourceResolverChain & 1 & 3 \\
+org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration$$FastClassBySpringCGLIB$$36b2d63e & 1 & 2 \\
+org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration$$FastClassBySpringCGLIB$$e81ad00a & 1 & 2 \\
+org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter$FaviconConfiguration$$EnhancerBySpringCGLIB$$114d2544$$FastClassBySpringCGLIB$$365b6c46 & 1 & 2 \\
+org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler & 1 & 2 \\
+org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration$$EnhancerBySpringCGLIB$$1b73b83b$$FastClassBySpringCGLIB$$e24f1ece & 1 & 2 \\
+org.springframework.web.servlet.mvc.method.annotation.ViewNameMethodReturnValueHandler & 1 & 2 \\
+org.springframework.util.PropertyPlaceholderHelper & 1 & 2 \\
+org.springframework.core.convert.support.CollectionToArrayConverter & 1 & 2 \\
+org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration$$FastClassBySpringCGLIB$$16d26c51 & 1 & 2 \\
+org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration$$EnhancerBySpringCGLIB$$37d828fc$$FastClassBySpringCGLIB$$8dc00f6 & 1 & 2 \\
+org.springframework.beans.factory.config.ConstructorArgumentValues$ValueHolder & 1 & 2 \\
+org.springframework.core.convert.support.CollectionToStringConverter & 1 & 2 \\
+20:59:33.328 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Finished waste analysis.
+Done, found 447 possible ways to save memory:
+	Duplicate instances (447):
+		Duplicates of 'org.springframework.beans.BeanMetadataAttribute': 128 instances of the 'org.springframework.beans.BeanMetadataAttribute' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationUtils$DefaultValueHolder': 122 instances of the 'org.springframework.core.annotation.AnnotationUtils$DefaultValueHolder' class contain exactly the same data.
+		Duplicates of 'org.springframework.beans.MutablePropertyValues': 119 instances of the 'org.springframework.beans.MutablePropertyValues' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 94 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.beans.BeanMetadataAttribute': 78 instances of the 'org.springframework.beans.BeanMetadataAttribute' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationUtils$DefaultValueHolder': 77 instances of the 'org.springframework.core.annotation.AnnotationUtils$DefaultValueHolder' class contain exactly the same data.
+		Duplicates of 'org.springframework.beans.BeanMetadataAttribute': 76 instances of the 'org.springframework.beans.BeanMetadataAttribute' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationUtils$DefaultValueHolder': 75 instances of the 'org.springframework.core.annotation.AnnotationUtils$DefaultValueHolder' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationUtils$DefaultValueHolder': 75 instances of the 'org.springframework.core.annotation.AnnotationUtils$DefaultValueHolder' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 75 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.Signature': 38 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 38 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 38 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 38 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 38 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.WeakCacheKey': 38 instances of the 'org.springframework.cglib.core.WeakCacheKey' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.LinkedMultiValueMap': 34 instances of the 'org.springframework.util.LinkedMultiValueMap' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 28 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.LinkedMultiValueMap': 27 instances of the 'org.springframework.util.LinkedMultiValueMap' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 20 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.LinkedMultiValueMap': 16 instances of the 'org.springframework.util.LinkedMultiValueMap' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.Signature': 16 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+		Duplicates of 'org.springframework.beans.factory.config.ConstructorArgumentValues': 15 instances of the 'org.springframework.beans.factory.config.ConstructorArgumentValues' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 15 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 15 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.beans.factory.support.GenericBeanDefinition': 14 instances of the 'org.springframework.beans.factory.support.GenericBeanDefinition' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 13 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 13 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.web.util.UrlPathHelper': 12 instances of the 'org.springframework.web.util.UrlPathHelper' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 12 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor': 12 instances of the 'org.springframework.core.convert.TypeDescriptor' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter': 12 instances of the 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.LinkedMultiValueMap': 12 instances of the 'org.springframework.util.LinkedMultiValueMap' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.LinkedMultiValueMap': 10 instances of the 'org.springframework.util.LinkedMultiValueMap' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.LinkedMultiValueMap': 10 instances of the 'org.springframework.util.LinkedMultiValueMap' class contain exactly the same data.
+		Duplicates of 'org.springframework.web.util.UrlPathHelper': 9 instances of the 'org.springframework.web.util.UrlPathHelper' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.LinkedMultiValueMap': 9 instances of the 'org.springframework.util.LinkedMultiValueMap' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.AntPathMatcher$PathSeparatorPatternCache': 9 instances of the 'org.springframework.util.AntPathMatcher$PathSeparatorPatternCache' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 9 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.Signature': 8 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.Signature': 8 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 8 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 8 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.AntPathMatcher': 7 instances of the 'org.springframework.util.AntPathMatcher' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.context.properties.source.SpringConfigurationPropertySource$DelegatingPropertyMapper': 7 instances of the 'org.springframework.boot.context.properties.source.SpringConfigurationPropertySource$DelegatingPropertyMapper' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 7 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 7 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 7 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.http.converter.ResourceHttpMessageConverter': 6 instances of the 'org.springframework.http.converter.ResourceHttpMessageConverter' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 6 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.web.accept.PathExtensionContentNegotiationStrategy': 6 instances of the 'org.springframework.web.accept.PathExtensionContentNegotiationStrategy' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 5 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 5 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.LinkedMultiValueMap': 5 instances of the 'org.springframework.util.LinkedMultiValueMap' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.LinkedMultiValueMap': 5 instances of the 'org.springframework.util.LinkedMultiValueMap' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 5 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 5 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 5 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.LocalVariableTableParameterNameDiscoverer': 5 instances of the 'org.springframework.core.LocalVariableTableParameterNameDiscoverer' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 5 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.support.GenericConversionService$ConvertersForPair': 4 instances of the 'org.springframework.core.convert.support.GenericConversionService$ConvertersForPair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.support.GenericConversionService$ConvertersForPair': 4 instances of the 'org.springframework.core.convert.support.GenericConversionService$ConvertersForPair' class contain exactly the same data.
+		Duplicates of 'org.springframework.http.converter.json.MappingJackson2HttpMessageConverter': 4 instances of the 'org.springframework.http.converter.json.MappingJackson2HttpMessageConverter' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 4 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 4 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 4 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 4 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.web.servlet.mvc.condition.ConsumesRequestCondition': 4 instances of the 'org.springframework.web.servlet.mvc.condition.ConsumesRequestCondition' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.context.properties.source.ConfigurationPropertyName$ElementType': 4 instances of the 'org.springframework.boot.context.properties.source.ConfigurationPropertyName$ElementType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 4 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 4 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration$$FastClassBySpringCGLIB$$e2017fd7': 4 instances of the 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration$$FastClassBySpringCGLIB$$e2017fd7' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 4 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 4 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 4 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 4 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.http.converter.StringHttpMessageConverter': 4 instances of the 'org.springframework.http.converter.StringHttpMessageConverter' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.Signature': 4 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 4 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 4 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 4 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 4 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 4 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 4 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.web.cors.UrlBasedCorsConfigurationSource': 4 instances of the 'org.springframework.web.cors.UrlBasedCorsConfigurationSource' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 4 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 4 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.support.GenericConversionService$ConvertersForPair': 3 instances of the 'org.springframework.core.convert.support.GenericConversionService$ConvertersForPair' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 3 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 3 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 3 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 3 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 3 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 3 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 3 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 3 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 3 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 3 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 3 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 3 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 3 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 3 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 3 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 3 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 3 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 3 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.Signature': 3 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.Signature': 3 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.Signature': 3 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 3 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 3 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 3 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 3 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 3 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration$$FastClassBySpringCGLIB$$75715220': 3 instances of the 'org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration$$FastClassBySpringCGLIB$$75715220' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 3 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 3 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.web.servlet.mvc.condition.RequestConditionHolder': 3 instances of the 'org.springframework.web.servlet.mvc.condition.RequestConditionHolder' class contain exactly the same data.
+		Duplicates of 'org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter': 3 instances of the 'org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter' class contain exactly the same data.
+		Duplicates of 'org.springframework.web.servlet.resource.DefaultResourceResolverChain': 3 instances of the 'org.springframework.web.servlet.resource.DefaultResourceResolverChain' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration$$FastClassBySpringCGLIB$$e81ad00a': 2 instances of the 'org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration$$FastClassBySpringCGLIB$$e81ad00a' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration$$FastClassBySpringCGLIB$$16d26c51': 2 instances of the 'org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration$$FastClassBySpringCGLIB$$16d26c51' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference': 2 instances of the 'org.springframework.util.ConcurrentReferenceHashMap$SoftEntryReference' class contain exactly the same data.
+		Duplicates of 'org.springframework.web.method.annotation.RequestParamMethodArgumentResolver': 2 instances of the 'org.springframework.web.method.annotation.RequestParamMethodArgumentResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.web.method.annotation.RequestParamMethodArgumentResolver': 2 instances of the 'org.springframework.web.method.annotation.RequestParamMethodArgumentResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType': 2 instances of the 'org.springframework.core.ResolvableType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor': 2 instances of the 'org.springframework.core.convert.TypeDescriptor' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor': 2 instances of the 'org.springframework.core.convert.TypeDescriptor' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor': 2 instances of the 'org.springframework.core.convert.TypeDescriptor' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor': 2 instances of the 'org.springframework.core.convert.TypeDescriptor' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor': 2 instances of the 'org.springframework.core.convert.TypeDescriptor' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor': 2 instances of the 'org.springframework.core.convert.TypeDescriptor' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor': 2 instances of the 'org.springframework.core.convert.TypeDescriptor' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.support.CollectionToStringConverter': 2 instances of the 'org.springframework.core.convert.support.CollectionToStringConverter' class contain exactly the same data.
+		Duplicates of 'org.springframework.beans.factory.config.ConstructorArgumentValues': 2 instances of the 'org.springframework.beans.factory.config.ConstructorArgumentValues' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionOutcome': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionOutcome' class contain exactly the same data.
+		Duplicates of 'org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler': 2 instances of the 'org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter': 2 instances of the 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter': 2 instances of the 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter': 2 instances of the 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter': 2 instances of the 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter': 2 instances of the 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter': 2 instances of the 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter': 2 instances of the 'org.springframework.core.convert.TypeDescriptor$AnnotatedElementAdapter' class contain exactly the same data.
+		Duplicates of 'org.springframework.web.servlet.mvc.method.annotation.ViewNameMethodReturnValueHandler': 2 instances of the 'org.springframework.web.servlet.mvc.method.annotation.ViewNameMethodReturnValueHandler' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.context.properties.source.ConfigurationPropertyName$ElementType': 2 instances of the 'org.springframework.boot.context.properties.source.ConfigurationPropertyName$ElementType' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.support.CollectionToArrayConverter': 2 instances of the 'org.springframework.core.convert.support.CollectionToArrayConverter' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 2 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 2 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 2 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 2 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 2 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 2 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 2 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 2 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 2 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 2 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 2 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 2 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 2 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.ResolvableType$DefaultVariableResolver': 2 instances of the 'org.springframework.core.ResolvableType$DefaultVariableResolver' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.LinkedMultiValueMap': 2 instances of the 'org.springframework.util.LinkedMultiValueMap' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration$$FastClassBySpringCGLIB$$36b2d63e': 2 instances of the 'org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration$$FastClassBySpringCGLIB$$36b2d63e' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.asm.Type': 2 instances of the 'org.springframework.asm.Type' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.unit.DataSize': 2 instances of the 'org.springframework.util.unit.DataSize' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.unit.DataSize': 2 instances of the 'org.springframework.util.unit.DataSize' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+		Duplicates of 'org.springframework.util.PropertyPlaceholderHelper': 2 instances of the 'org.springframework.util.PropertyPlaceholderHelper' class contain exactly the same data.
+		Duplicates of 'org.springframework.beans.BeanMetadataAttribute': 2 instances of the 'org.springframework.beans.BeanMetadataAttribute' class contain exactly the same data.
+		Duplicates of 'org.springframework.beans.BeanMetadataAttribute': 2 instances of the 'org.springframework.beans.BeanMetadataAttribute' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration$$EnhancerBySpringCGLIB$$37d828fc$$FastClassBySpringCGLIB$$8dc00f6': 2 instances of the 'org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration$$EnhancerBySpringCGLIB$$37d828fc$$FastClassBySpringCGLIB$$8dc00f6' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter$FaviconConfiguration$$EnhancerBySpringCGLIB$$114d2544$$FastClassBySpringCGLIB$$365b6c46': 2 instances of the 'org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter$FaviconConfiguration$$EnhancerBySpringCGLIB$$114d2544$$FastClassBySpringCGLIB$$365b6c46' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.Signature': 2 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.Signature': 2 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.Signature': 2 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.Signature': 2 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.Signature': 2 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+		Duplicates of 'org.springframework.cglib.core.Signature': 2 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair': 2 instances of the 'org.springframework.core.convert.converter.GenericConverter$ConvertiblePair' class contain exactly the same data.
+		Duplicates of 'org.springframework.beans.factory.config.ConstructorArgumentValues$ValueHolder': 2 instances of the 'org.springframework.beans.factory.config.ConstructorArgumentValues$ValueHolder' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 2 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 2 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.core.annotation.AnnotationAttributes': 2 instances of the 'org.springframework.core.annotation.AnnotationAttributes' class contain exactly the same data.
+		Duplicates of 'org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration$$EnhancerBySpringCGLIB$$1b73b83b$$FastClassBySpringCGLIB$$e24f1ece': 2 instances of the 'org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration$$EnhancerBySpringCGLIB$$1b73b83b$$FastClassBySpringCGLIB$$e24f1ece' class contain exactly the same data.
+
+Duration (hh:mm:ss): 0:00:04

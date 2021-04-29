@@ -1,0 +1,13 @@
+Analyzing classes from namespace `cz.mxmx.memoryanalyzer.example` in `/Users/hungig/Workspace/uni/thesis/dipl/memory-analyzer/experiments/data/primitive_fields.hprof`...
+
+Done, found:
+	Classes: 601
+	Instances: 13484
+Namespace cz.mxmx.memoryanalyzer.example
+	Classes: 2
+	Instances: 100
+
+Analyzing memory waste...
+
+Done, found 0 possible ways to save memory:
+Duration: PT0.61904S

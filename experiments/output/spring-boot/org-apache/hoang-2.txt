@@ -1,0 +1,85 @@
+20:58:03.642 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Analyzing classes from namespace `org.apache` in `/Users/hungig/Workspace/uni/thesis/dipl/memory-analyzer/sandbox/data/heapdump-spring-boot-example.hprof`...
+
+
+20:58:03.648 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Starting parsing dump from /Users/hungig/Workspace/uni/thesis/dipl/memory-analyzer/sandbox/data/heapdump-spring-boot-example.hprof
+20:58:05.214 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Finished parsing the dump.
+20:58:05.214 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Processing raw dump.
+20:58:07.050 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Finished processing raw dump.
+Done, found:
+	Classes: 7108
+	Instances: 159081
+Namespace org.apache
+	Classes: 570
+	Instances: 3167
+
+Analyzing memory waste...
+20:58:07.054 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Starting waste analysis. Using cz.mxmx.memoryanalyzer.memorywaste.ReferenceAndDuplicateWasteAnalyzerPipeline.
+20:58:07.056 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Instance waste analysis.
+20:58:07.064 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Grouped instances by class.
+20:58:07.308 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Analysis took 251 ms.
+20:58:07.320 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Found 991 duplicates.
+org.apache.tomcat.util.modeler.AttributeInfo & 20 & 789 \\
+org.apache.tomcat.util.buf.CharChunk & 2 & 43 \\
+org.apache.tomcat.util.buf.ByteChunk & 2 & 37 \\
+org.apache.logging.log4j.message.DefaultFlowMessageFactory & 1 & 34 \\
+org.apache.tomcat.util.buf.MessageBytes & 3 & 31 \\
+org.apache.catalina.util.ManifestResource & 7 & 14 \\
+org.apache.coyote.AsyncStateMachine$AsyncState & 1 & 8 \\
+org.apache.tomcat.util.threads.TaskThread & 2 & 8 \\
+org.apache.tomcat.util.threads.TaskThread$WrappingRunnable & 2 & 8 \\
+org.apache.tomcat.util.http.MimeHeaderField & 1 & 7 \\
+org.apache.catalina.util.Extension & 2 & 6 \\
+org.apache.tomcat.util.digester.SetNextRule & 1 & 2 \\
+org.apache.tomcat.util.digester.ObjectCreateRule & 1 & 2 \\
+org.apache.catalina.LifecycleState & 1 & 2 \\
+20:58:07.337 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Finished waste analysis.
+Done, found 46 possible ways to save memory:
+	Duplicate instances (46):
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 427 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 274 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.buf.CharChunk': 40 instances of the 'org.apache.tomcat.util.buf.CharChunk' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 39 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.logging.log4j.message.DefaultFlowMessageFactory': 34 instances of the 'org.apache.logging.log4j.message.DefaultFlowMessageFactory' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.buf.ByteChunk': 20 instances of the 'org.apache.tomcat.util.buf.ByteChunk' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.buf.ByteChunk': 17 instances of the 'org.apache.tomcat.util.buf.ByteChunk' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.buf.MessageBytes': 17 instances of the 'org.apache.tomcat.util.buf.MessageBytes' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 15 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.buf.MessageBytes': 12 instances of the 'org.apache.tomcat.util.buf.MessageBytes' class contain exactly the same data.
+		Duplicates of 'org.apache.coyote.AsyncStateMachine$AsyncState': 8 instances of the 'org.apache.coyote.AsyncStateMachine$AsyncState' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.http.MimeHeaderField': 7 instances of the 'org.apache.tomcat.util.http.MimeHeaderField' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.threads.TaskThread': 6 instances of the 'org.apache.tomcat.util.threads.TaskThread' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.threads.TaskThread$WrappingRunnable': 6 instances of the 'org.apache.tomcat.util.threads.TaskThread$WrappingRunnable' class contain exactly the same data.
+		Duplicates of 'org.apache.catalina.util.Extension': 4 instances of the 'org.apache.catalina.util.Extension' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 3 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 3 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.buf.CharChunk': 3 instances of the 'org.apache.tomcat.util.buf.CharChunk' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 2 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 2 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 2 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 2 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 2 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 2 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 2 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 2 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 2 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 2 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 2 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 2 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 2 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.modeler.AttributeInfo': 2 instances of the 'org.apache.tomcat.util.modeler.AttributeInfo' class contain exactly the same data.
+		Duplicates of 'org.apache.catalina.util.ManifestResource': 2 instances of the 'org.apache.catalina.util.ManifestResource' class contain exactly the same data.
+		Duplicates of 'org.apache.catalina.util.ManifestResource': 2 instances of the 'org.apache.catalina.util.ManifestResource' class contain exactly the same data.
+		Duplicates of 'org.apache.catalina.util.ManifestResource': 2 instances of the 'org.apache.catalina.util.ManifestResource' class contain exactly the same data.
+		Duplicates of 'org.apache.catalina.util.ManifestResource': 2 instances of the 'org.apache.catalina.util.ManifestResource' class contain exactly the same data.
+		Duplicates of 'org.apache.catalina.util.ManifestResource': 2 instances of the 'org.apache.catalina.util.ManifestResource' class contain exactly the same data.
+		Duplicates of 'org.apache.catalina.util.ManifestResource': 2 instances of the 'org.apache.catalina.util.ManifestResource' class contain exactly the same data.
+		Duplicates of 'org.apache.catalina.util.ManifestResource': 2 instances of the 'org.apache.catalina.util.ManifestResource' class contain exactly the same data.
+		Duplicates of 'org.apache.catalina.LifecycleState': 2 instances of the 'org.apache.catalina.LifecycleState' class contain exactly the same data.
+		Duplicates of 'org.apache.catalina.util.Extension': 2 instances of the 'org.apache.catalina.util.Extension' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.digester.SetNextRule': 2 instances of the 'org.apache.tomcat.util.digester.SetNextRule' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.threads.TaskThread': 2 instances of the 'org.apache.tomcat.util.threads.TaskThread' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.digester.ObjectCreateRule': 2 instances of the 'org.apache.tomcat.util.digester.ObjectCreateRule' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.threads.TaskThread$WrappingRunnable': 2 instances of the 'org.apache.tomcat.util.threads.TaskThread$WrappingRunnable' class contain exactly the same data.
+		Duplicates of 'org.apache.tomcat.util.buf.MessageBytes': 2 instances of the 'org.apache.tomcat.util.buf.MessageBytes' class contain exactly the same data.
+
+Duration (hh:mm:ss): 0:00:03

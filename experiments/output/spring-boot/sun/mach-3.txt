@@ -1,0 +1,32 @@
+Analyzing classes from namespace `sun` in `/Users/hungig/Workspace/uni/thesis/dipl/memory-analyzer/sandbox/data/heapdump-spring-boot-example.hprof`...
+
+Done, found:
+	Classes: 7108
+	Instances: 159081
+Namespace sun
+	Classes: 621
+	Instances: 8309
+
+Analyzing memory waste...
+Summary: 96
+Took 10091 ms.
+Done, found 16 possible ways to save memory:
+	Duplicate instances (16):
+		Duplicates of 'sun.reflect.generics.tree.TypeVariableSignature': 31 instances of the 'sun.reflect.generics.tree.TypeVariableSignature' class contain exactly the same data.
+		Duplicates of 'sun.reflect.generics.tree.TypeVariableSignature': 15 instances of the 'sun.reflect.generics.tree.TypeVariableSignature' class contain exactly the same data.
+		Duplicates of 'sun.reflect.generics.tree.TypeVariableSignature': 8 instances of the 'sun.reflect.generics.tree.TypeVariableSignature' class contain exactly the same data.
+		Duplicates of 'sun.reflect.generics.tree.TypeVariableSignature': 7 instances of the 'sun.reflect.generics.tree.TypeVariableSignature' class contain exactly the same data.
+		Duplicates of 'sun.reflect.generics.tree.ArrayTypeSignature': 4 instances of the 'sun.reflect.generics.tree.ArrayTypeSignature' class contain exactly the same data.
+		Duplicates of 'sun.reflect.generics.tree.ArrayTypeSignature': 3 instances of the 'sun.reflect.generics.tree.ArrayTypeSignature' class contain exactly the same data.
+		Duplicates of 'sun.reflect.generics.tree.ArrayTypeSignature': 3 instances of the 'sun.reflect.generics.tree.ArrayTypeSignature' class contain exactly the same data.
+		Duplicates of 'sun.reflect.generics.tree.ArrayTypeSignature': 3 instances of the 'sun.reflect.generics.tree.ArrayTypeSignature' class contain exactly the same data.
+		Duplicates of 'sun.reflect.generics.tree.TypeVariableSignature': 3 instances of the 'sun.reflect.generics.tree.TypeVariableSignature' class contain exactly the same data.
+		Duplicates of 'sun.reflect.generics.tree.ArrayTypeSignature': 3 instances of the 'sun.reflect.generics.tree.ArrayTypeSignature' class contain exactly the same data.
+		Duplicates of 'sun.reflect.generics.tree.ArrayTypeSignature': 3 instances of the 'sun.reflect.generics.tree.ArrayTypeSignature' class contain exactly the same data.
+		Duplicates of 'sun.reflect.generics.tree.ArrayTypeSignature': 3 instances of the 'sun.reflect.generics.tree.ArrayTypeSignature' class contain exactly the same data.
+		Duplicates of 'sun.reflect.generics.tree.ArrayTypeSignature': 3 instances of the 'sun.reflect.generics.tree.ArrayTypeSignature' class contain exactly the same data.
+		Duplicates of 'sun.util.locale.provider.LocaleResources$ResourceReference': 3 instances of the 'sun.util.locale.provider.LocaleResources$ResourceReference' class contain exactly the same data.
+		Duplicates of 'sun.reflect.generics.tree.TypeVariableSignature': 2 instances of the 'sun.reflect.generics.tree.TypeVariableSignature' class contain exactly the same data.
+		Duplicates of 'sun.util.locale.provider.LocaleProviderAdapter$Type': 2 instances of the 'sun.util.locale.provider.LocaleProviderAdapter$Type' class contain exactly the same data.
+
+Duration: PT14.913693S

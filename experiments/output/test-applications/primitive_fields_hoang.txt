@@ -1,0 +1,30 @@
+18:47:02.675 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Analyzing classes from namespace `cz.mxmx` in `/Users/hungig/Workspace/uni/thesis/dipl/memory-analyzer/experiments/data/primitive_fields.hprof`...
+
+
+18:47:02.681 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Starting parsing dump from /Users/hungig/Workspace/uni/thesis/dipl/memory-analyzer/experiments/data/primitive_fields.hprof
+18:47:02.853 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Finished parsing the dump.
+18:47:02.854 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Processing raw dump.
+18:47:03.198 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Finished processing raw dump.
+Done, found:
+	Classes: 601
+	Instances: 13484
+Namespace cz.mxmx
+	Classes: 2
+	Instances: 100
+
+Analyzing memory waste...
+18:47:03.203 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Starting waste analysis. Using cz.mxmx.memoryanalyzer.memorywaste.ReferenceAndDuplicateWasteAnalyzerPipeline.
+18:47:03.204 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Instance waste analysis.
+18:47:03.204 [Thread-1] INFO  cz.mxmx.memoryanalyzer.memorywaste.ReferenceWasteAnalyzer - Starting reference waste analysis
+18:47:03.206 [Thread-1] INFO  cz.mxmx.memoryanalyzer.memorywaste.ReferenceWasteAnalyzer - Finished reference waste analysis
+18:47:03.207 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Grouped instances by class.
+18:47:03.212 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Found 100 duplicates.
+18:47:03.213 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Finished waste analysis.
+Done, found 2 possible ways to save memory:
+	Duplicate instances (1):
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.PrimitiveField': 100 instances of the 'cz.mxmx.memoryanalyzer.example.PrimitiveField' class contain exactly the same data.
+
+	References analysis (1):
+		References waste analysis: Total references count 0, of that 0 are null references. Null references are NaN% of total references.
+
+Duration (hh:mm:ss): 0:00:00

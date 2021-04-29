@@ -1,0 +1,20 @@
+Analyzing classes from namespace `org.apache` in `/Users/hungig/Workspace/uni/thesis/dipl/memory-analyzer/sandbox/data/heapdump-spring-boot-example.hprof`...
+
+Done, found:
+	Classes: 7108
+	Instances: 159081
+Namespace org.apache
+	Classes: 570
+	Instances: 3167
+
+Analyzing memory waste...
+Summary: 43
+Took 1205 ms.
+Done, found 4 possible ways to save memory:
+	Duplicate instances (4):
+		Duplicates of 'org.apache.logging.log4j.message.DefaultFlowMessageFactory': 34 instances of the 'org.apache.logging.log4j.message.DefaultFlowMessageFactory' class contain exactly the same data.
+		Duplicates of 'org.apache.juli.logging.DirectJDKLog': 5 instances of the 'org.apache.juli.logging.DirectJDKLog' class contain exactly the same data.
+		Duplicates of 'org.apache.juli.logging.DirectJDKLog': 2 instances of the 'org.apache.juli.logging.DirectJDKLog' class contain exactly the same data.
+		Duplicates of 'org.apache.juli.logging.DirectJDKLog': 2 instances of the 'org.apache.juli.logging.DirectJDKLog' class contain exactly the same data.
+
+Duration: PT4.145581S

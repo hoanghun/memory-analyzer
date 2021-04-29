@@ -1,0 +1,348 @@
+20:54:31.178 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Analyzing classes from namespace `java.util.concurrent` in `/Users/hungig/Workspace/uni/thesis/dipl/memory-analyzer/sandbox/data/heapdump-spring-boot-example.hprof`...
+
+
+20:54:31.184 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Starting parsing dump from /Users/hungig/Workspace/uni/thesis/dipl/memory-analyzer/sandbox/data/heapdump-spring-boot-example.hprof
+20:54:32.689 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Finished parsing the dump.
+20:54:32.690 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Processing raw dump.
+20:54:34.347 [main] INFO  cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer - Finished processing raw dump.
+Done, found:
+	Classes: 7108
+	Instances: 159081
+Namespace java.util.concurrent
+	Classes: 113
+	Instances: 17748
+
+Analyzing memory waste...
+20:54:34.350 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Starting waste analysis. Using cz.mxmx.memoryanalyzer.memorywaste.ReferenceAndDuplicateWasteAnalyzerPipeline.
+20:54:34.351 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Instance waste analysis.
+20:54:34.366 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Grouped instances by class.
+20:55:04.126 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Analysis took 29774 ms.
+20:55:04.131 [Thread-0] INFO  cz.mxmx.memoryanalyzer.memorywaste.DuplicateInstanceWasteAnalyzer - Found 863 duplicates.
+java.util.concurrent.ConcurrentHashMap$Node & 284 & 621 \\
+java.util.concurrent.ConcurrentHashMap & 7 & 141 \\
+java.util.concurrent.atomic.AtomicInteger & 2 & 20 \\
+java.util.concurrent.ConcurrentHashMap$KeySetView & 1 & 19 \\
+java.util.concurrent.atomic.AtomicLong & 4 & 15 \\
+java.util.concurrent.atomic.AtomicBoolean & 2 & 11 \\
+java.util.concurrent.ThreadPoolExecutor$Worker & 2 & 8 \\
+java.util.concurrent.locks.AbstractQueuedSynchronizer$Node & 1 & 7 \\
+java.util.concurrent.atomic.AtomicReference & 1 & 5 \\
+java.util.concurrent.ConcurrentLinkedQueue$Node & 1 & 4 \\
+java.util.concurrent.atomic.AtomicMarkableReference$Pair & 1 & 3 \\
+java.util.concurrent.atomic.AtomicMarkableReference & 1 & 3 \\
+java.util.concurrent.LinkedBlockingQueue$Node & 1 & 3 \\
+java.util.concurrent.ConcurrentLinkedQueue & 1 & 3 \\
+20:55:04.145 [main] INFO  cz.mxmx.memoryanalyzer.app.App - Finished waste analysis.
+Done, found 309 possible ways to save memory:
+	Duplicate instances (309):
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap': 44 instances of the 'java.util.concurrent.ConcurrentHashMap' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap': 36 instances of the 'java.util.concurrent.ConcurrentHashMap' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap': 31 instances of the 'java.util.concurrent.ConcurrentHashMap' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$KeySetView': 19 instances of the 'java.util.concurrent.ConcurrentHashMap$KeySetView' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.atomic.AtomicInteger': 17 instances of the 'java.util.concurrent.atomic.AtomicInteger' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap': 15 instances of the 'java.util.concurrent.ConcurrentHashMap' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.atomic.AtomicLong': 9 instances of the 'java.util.concurrent.atomic.AtomicLong' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.atomic.AtomicBoolean': 8 instances of the 'java.util.concurrent.atomic.AtomicBoolean' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.locks.AbstractQueuedSynchronizer$Node': 7 instances of the 'java.util.concurrent.locks.AbstractQueuedSynchronizer$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap': 7 instances of the 'java.util.concurrent.ConcurrentHashMap' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ThreadPoolExecutor$Worker': 6 instances of the 'java.util.concurrent.ThreadPoolExecutor$Worker' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap': 5 instances of the 'java.util.concurrent.ConcurrentHashMap' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.atomic.AtomicReference': 5 instances of the 'java.util.concurrent.atomic.AtomicReference' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 4 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentLinkedQueue$Node': 4 instances of the 'java.util.concurrent.ConcurrentLinkedQueue$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 3 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.LinkedBlockingQueue$Node': 3 instances of the 'java.util.concurrent.LinkedBlockingQueue$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.atomic.AtomicInteger': 3 instances of the 'java.util.concurrent.atomic.AtomicInteger' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap': 3 instances of the 'java.util.concurrent.ConcurrentHashMap' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.atomic.AtomicMarkableReference': 3 instances of the 'java.util.concurrent.atomic.AtomicMarkableReference' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentLinkedQueue': 3 instances of the 'java.util.concurrent.ConcurrentLinkedQueue' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.atomic.AtomicBoolean': 3 instances of the 'java.util.concurrent.atomic.AtomicBoolean' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.atomic.AtomicMarkableReference$Pair': 3 instances of the 'java.util.concurrent.atomic.AtomicMarkableReference$Pair' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ConcurrentHashMap$Node': 2 instances of the 'java.util.concurrent.ConcurrentHashMap$Node' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.ThreadPoolExecutor$Worker': 2 instances of the 'java.util.concurrent.ThreadPoolExecutor$Worker' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.atomic.AtomicLong': 2 instances of the 'java.util.concurrent.atomic.AtomicLong' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.atomic.AtomicLong': 2 instances of the 'java.util.concurrent.atomic.AtomicLong' class contain exactly the same data.
+		Duplicates of 'java.util.concurrent.atomic.AtomicLong': 2 instances of the 'java.util.concurrent.atomic.AtomicLong' class contain exactly the same data.
+
+Duration (hh:mm:ss): 0:00:33
