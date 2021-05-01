@@ -39,7 +39,7 @@ public class DuplicateInstanceWaste implements Waste {
 	 */
 	public DuplicateInstanceWaste(WasteAnalyzer sourceWasteAnalyzer, Collection<InstanceDump> duplicates) {
 		this.sourceWasteAnalyzer = sourceWasteAnalyzer;
-		if(duplicates.isEmpty()) {
+		if (duplicates.isEmpty()) {
 			throw new IllegalArgumentException("There must be at least 2 duplicates");
 		}
 

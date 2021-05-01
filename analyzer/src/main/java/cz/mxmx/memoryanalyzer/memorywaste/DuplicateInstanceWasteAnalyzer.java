@@ -38,6 +38,7 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
     @Override
     public List<Waste> findMemoryWaste(MemoryDump memoryDump) {
         log.info("Instance waste analysis.");
+        long start = System.currentTimeMillis();
         List<Waste> wasteList = new ArrayList<>();
 
         Map<String, List<InstanceDump>> instancesGroupedByClass = memoryDump.getUserInstances().values().stream()
@@ -45,8 +46,29 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         log.info("Grouped instances by class.");
 
         instancesGroupedByClass.values().forEach(grouped -> findDuplicates(grouped, wasteList));
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start;
+        log.info("Analysis took {} ms.", timeElapsed);
 
+        summariseWaste(wasteList);
         return wasteList;
+    }
+
+    private void summariseClusters(List<Waste> wasteList) {
+
+    }
+
+    private void summariseWaste(List<Waste> wasteList) {
+        long duplicatesCount = wasteList.stream().mapToLong(waste -> waste.getAffectedInstances().size()).sum();
+        log.info("Found {} duplicates.", duplicatesCount);
+
+        Map<String, List<Waste>> sortedWaste = wasteList.stream()
+                .collect(Collectors.groupingBy(waste -> waste.getAffectedInstances().get(0).getClassDump().getName()));
+
+        sortedWaste.entrySet().stream()
+                .map(entry -> new SummarisedInfoAboutClass(entry.getKey(), entry.getValue()))
+                .sorted(Comparator.comparingLong(SummarisedInfoAboutClass::getDuplicatesCount).reversed())
+                .forEach(System.out::println);
     }
 
     private void findDuplicates(List<InstanceDump> instances, List<Waste> wasteList) {
@@ -207,6 +229,36 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         @Override
         public int hashCode() {
             return Objects.hash(idFirst, idSecond);
+        }
+    }
+
+    private static class SummarisedInfoAboutClass {
+        String className;
+        long clustersCount;
+        long duplicatesCount;
+
+        public SummarisedInfoAboutClass(String className, List<Waste> wasteList) {
+            this.className = className;
+
+            this.clustersCount = wasteList.size();
+            this.duplicatesCount = wasteList.stream().mapToLong(waste -> waste.getAffectedInstances().size()).sum();
+        }
+
+        public String toString() {
+            return String.format("%s & %d & %d \\\\", className, clustersCount, duplicatesCount);
+        }
+
+
+        public String getClassName() {
+            return className;
+        }
+
+        public long getClustersCount() {
+            return clustersCount;
+        }
+
+        public long getDuplicatesCount() {
+            return duplicatesCount;
         }
     }
 }
