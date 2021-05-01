@@ -13,7 +13,7 @@ public class ReferenceAndDuplicateWasteAnalyzerPipeline extends WasteAnalyzerPip
      */
     private static final Map<WasteAnalyzer, String> ANALYZERS = new HashMap<WasteAnalyzer, String>() {{
         put(new DuplicateInstanceWasteAnalyzer(), "Duplicate instances");
-//        put(new ReferenceWasteAnalyzer(), "References analysis");
+        put(new ReferenceWasteAnalyzer(), "References analysis");
     }};
 
     public ReferenceAndDuplicateWasteAnalyzerPipeline() {
