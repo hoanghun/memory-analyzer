@@ -157,7 +157,7 @@ public class RawRecordHandler extends RecordHandler {
 				InstanceField[] var11 = ci.instanceFields;
 
 				for (InstanceField field : var11) {
-					rawInstanceDump.addInstanceValue(this.stringMap.get(field.fieldNameStringId), instanceFieldValues[i]);
+					rawInstanceDump.addInstanceValue(ci.classObjId + "." + this.stringMap.get(field.fieldNameStringId), instanceFieldValues[i]);
 					++i;
 				}
 			}

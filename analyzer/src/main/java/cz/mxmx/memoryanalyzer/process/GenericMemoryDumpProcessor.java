@@ -234,9 +234,17 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
             Map<InstanceFieldDump<?>, Object> fieldsToAdd = new HashMap<>();
 
             instanceValues.forEach((fieldName, fieldValue) -> {
-                Optional<InstanceFieldDump<?>> any = value.getClassDump().getInstanceFields().stream()
-                        .filter(field -> field.getName().equals(fieldName))
-                        .findAny();
+
+                Optional<InstanceFieldDump<?>> any = Optional.empty();
+                ClassDump classDump = value.getClassDump();
+
+                while (classDump != null && !any.isPresent()) {
+                    any = classDump.getInstanceFields().stream()
+                            .filter(field -> field.getFullyQualifiedName().equals(fieldName))
+                            .findAny();
+
+                    classDump = classDump.getSuperClassDump();
+                }
 
                 any.ifPresent(instanceFieldDump -> {
                     if (instanceFieldDump.getType().equals(Object.class) && ((Value<?>) fieldValue).value instanceof Long && instances.get(((Long) (((Value<?>) fieldValue).value))) != null) {
@@ -381,7 +389,7 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
     private void processClassFields(Map<Long, ClassDump> classes, RawMemoryDump rawMemoryDump) {
         classes.forEach((key, value) -> {
                     RawClassDump rawClassDump = rawMemoryDump.getRawClassDumps().get(key);
-                    rawClassDump.getInstanceFields().forEach((name, strType) -> value.addInstanceField(name, getClass(strType)));
+                    rawClassDump.getInstanceFields().forEach((name, strType) -> value.addInstanceField(rawClassDump.getClassObjectId() + "." + name, name, getClass(strType)));
                     value.getInstanceFields().sort(fieldsComparator());
                 }
         );

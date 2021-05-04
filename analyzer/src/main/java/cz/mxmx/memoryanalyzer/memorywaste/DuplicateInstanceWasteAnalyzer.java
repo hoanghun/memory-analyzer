@@ -133,24 +133,28 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
         ClassDump classDump = a.getClassDump();
 
         boolean instancesSame = true;
-        for (InstanceFieldDump<?> field : classDump.getInstanceFields()) {
-            Object value = a.getInstanceFieldValues().get(field);
-            Object value2 = b.getInstanceFieldValues().get(field);
+        while (instancesSame && classDump != null) {
+            for (InstanceFieldDump<?> field : classDump.getInstanceFields()) {
+                Object value = a.getInstanceFieldValues().get(field);
+                Object value2 = b.getInstanceFieldValues().get(field);
 
-            if (value instanceof InstanceDump && value2 instanceof InstanceDump) {
-                instancesSame = deepEquals((InstanceDump) value, (InstanceDump) value2, currentlyComparing);
-            } else if (value instanceof Value && value2 instanceof Value) {
-                instancesSame = Objects.equals(((Value<?>) value).value, ((Value<?>) value2).value);
-            } else {
-                instancesSame = value.equals(value2);
+                if (value instanceof InstanceDump && value2 instanceof InstanceDump) {
+                    instancesSame = deepEquals((InstanceDump) value, (InstanceDump) value2, currentlyComparing);
+                } else if (value instanceof Value && value2 instanceof Value) {
+                    instancesSame = Objects.equals(((Value<?>) value).value, ((Value<?>) value2).value);
+                } else {
+                    instancesSame = value.equals(value2);
+                }
+
+                if (!instancesSame) {
+                    break;
+                }
             }
 
-            if (!instancesSame) {
-                break;
-            }
+            classDump = classDump.getSuperClassDump();
         }
 
-        instancesSame = instancesSame && classDump.getInstanceFields().size() > 0;
+        instancesSame = instancesSame && (a.getClassDump() != null ? a.getClassDump().getInstanceFields().size() : 0) > 0;
 
         return instancesSame;
     }

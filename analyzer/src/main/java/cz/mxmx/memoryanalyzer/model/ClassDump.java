@@ -45,6 +45,10 @@ public class ClassDump {
 		this.instanceFields.add(new InstanceFieldDump<>(name, type));
 	}
 
+	public void addInstanceField(String fullyQualifiedName, String name, Class<?> type) {
+		this.instanceFields.add(new InstanceFieldDump<>(fullyQualifiedName, name, type));
+	}
+
 	public void addStaticField(String name, Class<?> type, Object value) {
 		this.staticFields.add(new FieldDump(name, type, value));
 	}
