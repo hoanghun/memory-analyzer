@@ -96,6 +96,7 @@ public class ConsoleResultWriter implements ResultWriter {
 
     private String dumpIds(Waste waste) {
         return "\n\t\t\t" + waste.getAffectedInstances().stream()
+                .limit(10)
                 .map(it -> it.getInstanceId().toString())
                 .collect(Collectors.joining(","));
     }
